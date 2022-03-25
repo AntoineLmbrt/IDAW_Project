@@ -4,11 +4,17 @@
 
         <meta charset="utf-8">
         <title>iMangerMieux</title>
+        <link rel="icon" type="image/png" sizes="16x16" href="imgs/logos/logo_light">
 
         <!-- CSS files -->
-        
+        <link rel="stylesheet" href = "css/style.css">
+
+        <!-- JS files -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     </head>
     <body>
         <header>
-            <h1 id=tilte>iMangerMieux</h1>
+            <img id="logo" src="imgs/logos/logo_light">
+            <h1 id="title">iMANGERMIEUX</h1>
         </header>
