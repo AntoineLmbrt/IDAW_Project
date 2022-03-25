@@ -3,42 +3,35 @@
     $auth = json_decode($auth,true);
     $auth['dataBase']["username"]; 
     $conn = new mysqli($auth['dataBase']["servername"],$auth['dataBase']["username"], $auth['dataBase']["password"], $auth['dataBase']["dbname"]);
-    
+
     //On vérifie la connection
     if($conn->connect_error){
         die('Erreur : ' .$conn->connect_error);
     }
     echo 'Connexion réussie <br></br>';
 
-    // On cherche ce que demande le front
     switch($_SERVER["REQUEST_METHOD"]) {
         case "GET":
             if(isset($_GET["function"])){
                 switch($_GET["function"]){
-                    case "auth":
+                    case "read":
                         print_r($_GET);
-                        authentification($_GET['login'], $_GET['password'],$conn);
+                        read($conn);
                     break;
                 }
             }
             break;
     }
 
-
-
-
-    function authentification($login,$password, $conn){
-        $query = "SELECT * FROM utilisateur WHERE login='".$login."' AND password='".$password."'";
-        $res=$conn->query($query);
-        if($res->num_rows ==1){
-            $resultat["resultat"]='true';
-            session_start();
-            $_SESSION["login"]=$login;
-            $_SESSION["password"]=$password;
+    function Read($conn){
+        $sql="SELECT libelle FROM sexe";
+        $res=$conn->query($sql);
+        $response=[];
+        if($res->num_rows>0){
+            for($i=0; $i<$res->num_rows; $i++){
+                array_push($response,$res->fetch_array(MYSQLI_ASSOC));
+            }
         }
-        else{
-            $resultat["resultat"]='false';
-            print_r($resultat);
-        }
+        $resultat['data']=$response;
     }
 ?>
