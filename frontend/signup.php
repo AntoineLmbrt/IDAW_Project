@@ -20,7 +20,10 @@
         <tr>
             <th>Sexe :</th>
             <td>
-                <!-- TODO -->
+            <select name="sexe">
+                    <option value="femme">Femme</option>
+                    <option value="homme">Homme</option>
+                </select>
             </td>
         </tr>
         <tr>
