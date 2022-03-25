@@ -1,4 +1,4 @@
-<form id="inscription" action="inscription.php" method="POST">
+<form id="inscription" action="inscription.php" method="POST" onload="chargementSexe()">
     <table>
         <tr>
             <th>Nom :</th>
@@ -20,7 +20,7 @@
         <tr>
             <th>Sexe :</th>
             <td>
-            <select name="sexe">
+            <select name="sexe" id="inputSexe">
                     <option value="femme">Femme</option>
                     <option value="homme">Homme</option>
                 </select>
@@ -32,3 +32,20 @@
         </tr>
     </table>
 </form>
+<script>
+    document.getElementById('inputSexe').addEventListener('load',chargementSexe());
+    function chargementSexe(){
+        console.log('test');
+        $.ajax({
+            url:"../backend/sexe.php?function=read",
+            method: "GET",
+            dataType: "json",
+        })
+        .done(function(data){
+            console.log(data);
+        })
+        .fail(function(){
+            console.log('REQ AJAX FAILED ...');
+        })
+    };
+</script>
