@@ -32,13 +32,14 @@
         $res=$conn->query($query);
         if($res->num_rows ==1){
             $resultat["resultat"]='true';
+            echo json_encode($resultat,0);
             session_start();
             $_SESSION["login"]=$login;
             $_SESSION["password"]=$password;
         }
         else{
             $resultat["resultat"]='false';
-            print_r($resultat);
+            echo json_encode($resultat,0);
         }
     }
 ?>

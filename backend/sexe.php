@@ -15,7 +15,6 @@
             if(isset($_GET["function"])){
                 switch($_GET["function"]){
                     case "read":
-                        print_r($_GET);
                         read($conn);
                     break;
                 }
@@ -29,9 +28,13 @@
         $response=[];
         if($res->num_rows>0){
             for($i=0; $i<$res->num_rows; $i++){
-                array_push($response,$res->fetch_array(MYSQLI_ASSOC));
+                array_push($response,$res->fetch_assoc());
             }
         }
-        $resultat['data']=$response;
+        $resultat['data']=[];
+        foreach($response as $value){
+            array_push($resultat['data'],$value['libelle']);
+        }
+        echo json_encode($resultat,0);
     }
 ?>
