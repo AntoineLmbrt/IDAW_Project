@@ -1,6 +1,11 @@
 <form id="inscription" action="inscription.php" method="POST">
     <table>
         <tr>
+            <th>Nom :</th>
+            <td><input type="text" id="inputNom"></td>
+            <th>Prénom :</th>
+            <td><input type="text" id="inputPrenom"></td>
+        <tr>
             <th>Adresse mail :</th>
             <td><input type="text" id="inputLogin"></td>
         </tr>
