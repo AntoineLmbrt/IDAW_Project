@@ -30,10 +30,12 @@
         </tr>
     </table>
 </form>
+
 <script>
-    document.getElementById('inputSexe').addEventListener('load',chargementSexe());
+
+    $('inputSexe').ready(chargementSexe());
+
     function chargementSexe(){
-        console.log('test');
         $.ajax({
             url:"../backend/sexe.php?function=read",
             method: "GET",
@@ -49,4 +51,5 @@
             console.log('REQ AJAX FAILED ...');
         })
     };
+    
 </script>
