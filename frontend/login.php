@@ -1,16 +1,15 @@
-<form id="login_form" action="connected.php" method="POST">
-    <table>
-        <tr>
-            <th>Login :</th>
-            <td><input type="text" name="login"></td>
-        </tr>
-        <tr>
-            <th>Mot de passe :</th>
-            <td><input type="password" name="password"></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td><input type="submit" value="Se connecter..." /></td>
-        </tr>
-    </table>
+<form id="login-form" action="connected.php" method="POST">
+    <ul>
+        <li>
+            <label>Login :</label>
+            <input type="text" name="login">
+        </li>
+        <li>
+            <label>Mot de passe :</label>
+            <input type="password" name="password">
+        </li>
+        <li>
+            <input type="submit" value="Se connecter...">
+        </li>
+    </ul>
 </form>

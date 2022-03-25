@@ -1,34 +1,30 @@
-<form id="inscription" action="inscription.php" method="POST" onload="chargementSexe()">
-    <table>
-        <tr>
-            <th>Nom :</th>
-            <td><input type="text" id="inputNom"></td>
-            <th>Prénom :</th>
-            <td><input type="text" id="inputPrenom"></td>
-        <tr>
-            <th>Adresse mail :</th>
-            <td><input type="text" id="inputLogin"></td>
-        </tr>
-        <tr>
-            <th>Mot de passe :</th>
-            <td><input type="password" name="inputPassword"></td>
-        </tr>
-        <tr>
-            <th>Date de Naissance :</th>
-            <td><input type="date" name="inputBirthday"></td>
-        </tr>
-        <tr>
-            <th>Sexe :</th>
-            <td>
-            <select name="sexe" id="inputSexe">
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th></th>
-            <td><input type="submit" value="S'inscrire" /></td>
-        </tr>
-    </table>
+<form id="signup-form" action="inscription.php" method="POST" onload="chargementSexe()">
+    <ul>
+        <li>
+            <label>Nom et Prénom</label>
+            <input type="text" name="inputNom" class="two-fields" placeholder="Nom">
+            <input type="text" name="inputPrenom" class="two-fields" placeholder="Prénom">
+        </li>
+        <li>
+            <label>Email</label>
+            <input type="email" name="inputLogin" class="one-field" placeholder="Email">
+        </li>
+        <li>
+            <label>Mot de passe</label>
+            <input type="passeword" name="inputPassword" class="one-field" placeholder="Mot de passe">
+        </li>
+        <li>
+            <label>Date de naissance</label>
+            <input type="date" name="inputBirthday">
+        </li>
+        <li>
+            <label>Sexe</label>
+            <select name="sexe" id="inputSexe"></select>
+        </li>
+        <li>
+            <input type="submit" value="S'inscrire" />
+        </li>
+    </ul>
 </form>
 
 <script>
@@ -51,5 +47,5 @@
             console.log('REQ AJAX FAILED ...');
         })
     };
-    
+
 </script>
