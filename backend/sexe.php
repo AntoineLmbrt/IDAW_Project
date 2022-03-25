@@ -8,8 +8,6 @@
     if($conn->connect_error){
         die('Erreur : ' .$conn->connect_error);
     }
-    echo 'Connexion réussie <br></br>';
-
     switch($_SERVER["REQUEST_METHOD"]) {
         case "GET":
             if(isset($_GET["function"])){
