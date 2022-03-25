@@ -21,8 +21,6 @@
             <th>Sexe :</th>
             <td>
             <select name="sexe" id="inputSexe">
-                    <option value="femme">Femme</option>
-                    <option value="homme">Homme</option>
                 </select>
             </td>
         </tr>
@@ -42,7 +40,10 @@
             dataType: "json",
         })
         .done(function(data){
-            console.log(data);
+                for(let i in data['data']){
+                    $("#inputSexe").append(`<option value="${data["data"][i]}"> ${data["data"][i]} </option>`);
+                }
+            
         })
         .fail(function(){
             console.log('REQ AJAX FAILED ...');
