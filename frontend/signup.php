@@ -1,4 +1,4 @@
-<form id="inscription" action="inscription.php" method="POST" onload="chargementSexe()">
+<form id="inscription" action="inscription.php" method="POST" onSubmit="submitInscription()">
     <table>
         <tr>
             <th>Nom :</th>
@@ -33,7 +33,6 @@
 <script>
     document.getElementById('inputSexe').addEventListener('load',chargementSexe());
     function chargementSexe(){
-        console.log('test');
         $.ajax({
             url:"../backend/sexe.php?function=read",
             method: "GET",
@@ -49,4 +48,5 @@
             console.log('REQ AJAX FAILED ...');
         })
     };
+
 </script>
