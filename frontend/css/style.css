@@ -1,0 +1,108 @@
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #E3EBD0;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    background-color: #9FCDA8;
+    height: 100px;
+    color: #E3EBD0;
+}
+
+#logo {
+    width: 100px;
+    height: auto;
+}
+
+h1 {
+    margin-top: auto;
+}
+
+h6 {
+    text-align: center;
+    font-style: italic;
+}
+
+
+.content {
+
+}
+
+#signup-form ul {
+    margin: 10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+    background-color: #9FCDA8;
+    color: #E3EBD0;
+    border-radius: 5px;
+}
+
+#signup-form ul li {
+    padding: 1px;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+
+#signup-form label {
+    margin: 0 0 3px 0;
+	padding: 0px;
+	display: block;
+	font-weight: bold;
+}
+
+
+#signup-form ul input[type=submit] {
+	background: #E3EBD0;
+    margin-top: 10px;
+	padding: 8px 15px 8px 15px;
+	border: none;
+    border-radius: 5px;
+	color: #9FCDA8;
+    cursor: pointer;
+}
+
+#login-form ul {
+    margin: 10px auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+    background-color: #9FCDA8;
+    color: #E3EBD0;
+    border-radius: 5px;
+}
+
+#login-form ul li {
+    padding: 1px;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+
+#login-form label {
+    margin: 0 0 3px 0;
+	padding: 0px;
+	display: block;
+	font-weight: bold;
+}
+
+
+#login-form ul input[type=submit] {
+	background: #E3EBD0;
+    margin-top: 10px;
+	padding: 8px 15px 8px 15px;
+	border: none;
+    border-radius: 5px;
+	color: #9FCDA8;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #9FCDA8;
+    height: 100px;
+    color: #E3EBD0;
+}
