@@ -1,4 +1,4 @@
-<form id="signup-form" action="inscription.php" method="POST" onload="chargementSexe()">
+<form id="signup-form" action="inscription.php" method="POST" onSubmit="onFormSubmit()">
     <ul>
         <li>
             <label>Nom et Prénom</label>
@@ -44,4 +44,8 @@
             console.log('REQ AJAX FAILED ...');
         })
     };
+
+    function onFormSubmit(){
+        console.log("essaie");
+    }
 </script>

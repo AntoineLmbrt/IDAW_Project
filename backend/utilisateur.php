@@ -21,7 +21,10 @@
                     break;
                 }
             }
-            break;
+        break;
+        
+        case "PUT":
+            newUser($_GET["data"]);
     }
 
 
@@ -40,6 +43,12 @@
         else{
             $resultat["resultat"]='false';
             echo json_encode($resultat,0);
+        }
+    }
+
+    function newUser($data){
+        foreach($data as $key => $value){
+            
         }
     }
 ?>
