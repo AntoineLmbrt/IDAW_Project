@@ -1,21 +1,21 @@
-<form id="signup-form" action="inscription.php" method="POST" onSubmit="onFormSubmit()">
+<form id="signup-form" action="" onSubmit="onFormSubmit()">
     <ul>
         <li>
             <label>Nom et Prénom</label>
-            <input type="text" name="inputNom" class="two-fields" placeholder="Nom">
-            <input type="text" name="inputPrenom" class="two-fields" placeholder="Prénom">
+            <input type="text" name="inputNom" id="inputNom" class="two-fields" placeholder="Nom">
+            <input type="text" name="inputPrenom" id="inputPrenom" class="two-fields" placeholder="Prénom">
         </li>
         <li>
             <label>Email</label>
-            <input type="email" name="inputLogin" class="one-field" placeholder="Email">
+            <input type="email" name="inputLogin" id="inputEmail" class="one-field" placeholder="Email">
         </li>
         <li>
             <label>Mot de passe</label>
-            <input type="passeword" name="inputPassword" class="one-field" placeholder="Mot de passe">
+            <input type="password" name="inputPassword" id="inputPassword" class="one-field" placeholder="Mot de passe">
         </li>
         <li>
             <label>Date de naissance</label>
-            <input type="date" name="inputBirthday">
+            <input type="date" name="inputBirthday" id="inputDate">
         </li>
         <li>
             <label>Sexe</label>
@@ -44,8 +44,39 @@
             console.log('REQ AJAX FAILED ...');
         })
     };
-
+    // Création du nouveau compte
     function onFormSubmit(){
-        console.log("essaie");
+        event.preventDefault();
+        console.log('Test');
+        if( $("#inputNom").val()!='' && $("#inputPrenom").val()!='' && $("#inputEmail").val()!='' && $("#inputPassword").val()!='' &&$("#inputDate").val()!='' && $("#inputSexe").val()!='' ){
+            $.ajax({
+                url:"../backend/utilisateur.php",
+                method:'POST',
+                dataType:"json",
+                data:{
+                    'email':$("#inputEmail").val(),
+                    'password':$("#inputPassword").val(),
+                    'nom': $("#inputNom").val(),
+                    'prenom':$("#inputPrenom").val(),
+                    'date':$("#inputDate").val(),
+                    'sexe':$("#inputSexe").val(),
+                }
+            }).done(function(data){
+                console.log("REQUETE AJAX SUCCED");
+                console.log(data);
+                if(data['Valide']=='Email déjà utilisé '){
+                    // -----> ENTRER CODE SI LOGIN DEJA UTILISE
+                }
+                else{
+                    //-----> ENTRER CODE INSCRIPTION FINIES
+                }
+
+            }).fail(function(){
+                console.log('REQUETE AJAX FAILED');
+            })
+        } else{
+            // -----> ENTRER CODE POUR RENSEIGNER TOUT LES CHAMPS
+            console.log('Loupé');
+        }
     }
 </script>
