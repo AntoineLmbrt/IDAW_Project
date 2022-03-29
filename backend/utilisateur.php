@@ -26,7 +26,7 @@
 
 
 
-
+    //Vérifier les accès de l'utilisateur
     function authentification($login,$password, $conn){
         $query = "SELECT * FROM utilisateur WHERE login='".$login."' AND password='".$password."'";
         $res=$conn->query($query);
@@ -43,7 +43,8 @@
             echo json_encode($resultat,0);
         }
     }
-
+    
+    // Ajouter ou modifier un utilisateur
     function User($conn){
         // On regarde si le login est unique.
         $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['email']."'";
