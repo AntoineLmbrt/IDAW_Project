@@ -79,7 +79,38 @@
                   $sql=$sql."'".$value."',";
                 }
             }
-            $sql="INSERT INTO utilisateur VALUES(".$sql."NULL)";
+
+            // On ditribue l'objectif selon le sexe et l'age (ici de manière brute)
+            // Code compliqué a faire évoluer
+            if(age($_POST['date'])<11){
+                if($_POST['sexe']==2){
+                    $sql=$sql."2";
+                }
+                else{
+                    $sql=$sql."1";
+                }
+            }
+            elseif(age($_POST['date'])<19){
+                if($_POST['sexe']==2){
+                    $sql=$sql."4";
+                }
+                else{
+                    $sql=$sql."3";
+                }
+            }
+            else{
+                if($_POST['sexe']==2){
+                    $sql=$sql."6";
+                }
+                else{
+                    $sql=$sql."5";
+                }
+            }
+
+
+            $sql="INSERT INTO utilisateur VALUES(".$sql.")";
+            $response['sql']=$sql;
+            $conn -> query($sql);
             session_start();
             $_SESSION["login"]=$_POST['email'];
             $_SESSION["password"]=$_POST['password'];
