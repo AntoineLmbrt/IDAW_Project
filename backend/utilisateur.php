@@ -32,22 +32,22 @@
         $res=$conn->query($query);
         if($res->num_rows ==1){
             $resultat["resultat"]='true';
-            echo json_encode($resultat,0);
             session_start();
             $_SESSION["login"]=$login;
             $_SESSION["password"]=$password;
-            session_destroy();
+            echo json_encode($resultat,0);
+            
         }
         else{
             $resultat["resultat"]='false';
             echo json_encode($resultat,0);
         }
-    }
+    };
     
     // Ajouter ou modifier un utilisateur
     function User($conn){
         // On regarde si le login est unique.
-        $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['email']."'";
+        $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['login']."'";
         $res = $conn -> query($sql);
 
         // Si il retourne une ligne c'est qu'il n'est pas unique
@@ -113,10 +113,8 @@
             $response['sql']=$sql;
             $conn -> query($sql);
             session_start();
-            $_SESSION["login"]=$_POST['email'];
+            $_SESSION["login"]=$_POST['login'];
             $_SESSION["password"]=$_POST['password'];
-            session_destroy();
-
             echo json_encode($response,0);
         }
 

@@ -54,7 +54,7 @@
                 method:'POST',
                 dataType:"json",
                 data:{
-                    'email':$("#inputEmail").val(),
+                    'login':$("#inputEmail").val(),
                     'password':$("#inputPassword").val(),
                     'nom': $("#inputNom").val(),
                     'prenom':$("#inputPrenom").val(),
@@ -68,7 +68,7 @@
                     // -----> ENTRER CODE SI LOGIN DEJA UTILISE
                 }
                 else{
-                    //-----> ENTRER CODE INSCRIPTION FINIES
+                    window.location.replace("http://project/frontend/index.php?home");
                 }
 
             }).fail(function(){
