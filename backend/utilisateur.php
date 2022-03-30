@@ -16,6 +16,9 @@
                     case "auth":
                         authentification($_GET['login'], $_GET['password'],$conn);
                     break;
+                    case "objectif":
+                        objectif($conn);
+                    break;
                 }
             }
         break;
@@ -43,6 +46,15 @@
             echo json_encode($resultat,0);
         }
     };
+
+    function objectif($conn){
+        $sql = "SELECT objectif.nb_calories FROM utilisateur
+                LEFT JOIN objectif ON utilisateur.id_objectif=objectif.id_objectif
+                WHERE utilisateur.login='".$_GET['login']."'";
+        $res=$conn -> query($sql);
+        $row = $res->fetch_assoc();
+        echo $row['nb_calories'];
+    }
     
     // Ajouter ou modifier un utilisateur
     function User($conn){
