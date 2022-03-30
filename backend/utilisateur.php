@@ -19,6 +19,9 @@
                     case "objectif":
                         objectif($conn);
                     break;
+                    case 'profil':
+                        profil($conn);
+                    break;
                 }
             }
         break;
@@ -47,6 +50,8 @@
         }
     };
 
+
+    // Obtenir l'objectif de l'utilisateur
     function objectif($conn){
         session_start();
         $sql = "SELECT objectif.nb_calories FROM utilisateur
@@ -56,7 +61,19 @@
         $row = $res->fetch_assoc();
         echo json_encode($row['nb_calories']);
     }
-    
+    // Obtenir le profil de l'utilisateur
+    function profil($conn){
+        session_start();
+        $sql="SELECT utilisateur.*, sexe.libelle FROM utilisateur
+        LEFT JOIN sexe ON sexe.id_sexe=utilisateur.id_sexe
+        WHERE login='".$_SESSION['login']."'";
+        $res=$conn -> query($sql);
+        $row = $res->fetch_assoc();
+        $row = mb_convert_encoding($row,'UTF-8', 'CP1252');
+        echo json_encode($row);
+    }
+
+
     // Ajouter ou modifier un utilisateur
     function User($conn){
         // On regarde si le login est unique.
