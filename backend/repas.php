@@ -19,31 +19,33 @@
 
     switch($_SERVER['REQUEST_METHOD']){
         case 'GET':
-            switch($_GET['time']){
-                case 'day':
+            if(isset($_GET['time'])){
+                switch($_GET['time']){
+                    case 'day':
+                        Repas_Calorie_day($conn);
+                    break;
                     
-                    Repas_Calorie_day($conn);
-                    
-                break;
-                
-                case 'week':
-                    Repas_Calorie_week($conn);
-                break;
+                    case '3days':
+                        Repas_jour($conn);
+                    break;
+                    case 'week':
+                        Repas_Calorie_week($conn);
+                    break;
 
-                case 'month':
-                    Repas_Calorie_month($conn);
-                break;
+                    case 'month':
+                        Repas_Calorie_month($conn);
+                    break;
+                }
             }
         break;
     }
     
 
     function Repas_Calorie_day($conn){
-
         // Gets repas du jour
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_GET['login']."'  AND repas.date='".date('Y-m-d')."'";
+        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date='".date('Y-m-d')."'";
 
         $res=$conn -> query($sql);
         $rows = array();
@@ -51,7 +53,7 @@
         while($row = $res->fetch_assoc()) { 
             $nbCalRepas= $nbCalRepas + $row['aliment.nb_calories*repas.quantite'];
         }
-        echo $nbCalRepas;  
+        echo json_encode($nbCalRepas,0);  
     
     }
 
@@ -62,7 +64,7 @@
 
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_GET['login']."'  AND repas.date <= '".$date_ajd."' AND repas.date >= '".$date_db_semaine."'";
+        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date <= '".$date_ajd."' AND repas.date >= '".$date_db_semaine."'";
 
         $res=$conn -> query($sql);
         $rows = array();
@@ -79,7 +81,7 @@
 
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_GET['login']."'  AND repas.date <= '".$date_ajd."' AND repas.date >= '".$date_db_month."'";
+        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date <= '".$date_ajd."' AND repas.date >= '".$date_db_month."'";
 
         $res=$conn -> query($sql);
         $rows = array();
@@ -88,5 +90,24 @@
             $nbCalRepas= $nbCalRepas + $row['aliment.nb_calories*repas.quantite'];
         }
         echo $nbCalRepas;
+    }
+
+
+    function Repas_jour($conn){
+        $sql="SELECT aliment.nom, repas.quantite, aliment.nb_calories*repas.quantite FROM repas 
+        LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
+        WHERE repas.login = '".$_SESSION['login']."' AND repas.date='".date('Y-m-d')."'";
+
+        $res=$conn -> query($sql);
+        $rows = array();
+        while($row = $res->fetch_assoc()) {
+            foreach($row as $key=>$value){
+                $result = mb_convert_encoding($value,'UTF-8', 'CP1252');
+                $row[$key]=$result;
+            }
+            array_push($rows, $row);
+        }
+        echo json_encode($rows);
+        
     }
 ?>

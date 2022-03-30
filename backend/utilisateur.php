@@ -48,12 +48,13 @@
     };
 
     function objectif($conn){
+        session_start();
         $sql = "SELECT objectif.nb_calories FROM utilisateur
                 LEFT JOIN objectif ON utilisateur.id_objectif=objectif.id_objectif
-                WHERE utilisateur.login='".$_GET['login']."'";
+                WHERE utilisateur.login='".$_SESSION['login']."'";
         $res=$conn -> query($sql);
         $row = $res->fetch_assoc();
-        echo $row['nb_calories'];
+        echo json_encode($row['nb_calories']);
     }
     
     // Ajouter ou modifier un utilisateur
