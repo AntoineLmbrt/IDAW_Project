@@ -13,6 +13,9 @@
     }
     
     $rows = mb_convert_encoding($rows,'UTF-8', 'CP1252');
+    $response["draw"]= 2;
+    $response["recordsTotal"]= 3185;
+    $response["recordsFiltered"]= 3185;
     $response['data']=$rows;
     echo json_encode($response);
 ?>
