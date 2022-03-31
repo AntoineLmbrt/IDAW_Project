@@ -16,7 +16,3 @@
 
     </head>
     <body>
-        <header>
-            <img id="logo" src="imgs/logos/logo_light">
-            <h1 id="title">iMANGERMIEUX</h1>
-        </header>
