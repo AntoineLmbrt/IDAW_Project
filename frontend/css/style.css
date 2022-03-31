@@ -1,33 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 * {
     margin: 0;
-}
-
-html {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
 }
 
 body {
-    background-color: #F6FFFE;
-    margin: 0 auto;
-    height: 100%;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-header {
-    display: flex;
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
     background-color: #2ED4AE;
-    height: 100px;
+    padding: 6px 14px;
+}
+
+.menu .logo {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
     color: #F6FFFE;
 }
 
-#logo {
-    float: left;
-    width: 100px;
+.logo img {
+    width: 40px;
     height: auto;
 }
 
-h1 {
-    margin-top: 30px;
-    font-size: 40px;
+.logo .logo_name {
+    margin: 2px 0 0 10px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.menu ul {
+    margin-top: 20px;
+}
+
+.menu ul li {
+    position: inherit;
+    height: 50px;
+    width: 100%;
+    margin: 5px;
+    line-height: 50px;
+    list-style-type: none;
+}
+
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+    color: #F6FFFE;
+    transition: all 0.4s ease;
+}
+
+.menu ul li a:hover {
+    color: #2ED4AE;
+    background-color: #F6FFFE;
+}
+#currentpage {
+    color: #2ED4AE;
+    background-color: #F6FFFE;
+}
+
+.menu .profile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #F6FFFE;
+}
+
+.menu .profile .details {
+    position: relative;
+    padding: 10px 6px;
+    height: 75px;
+    text-align: center;
+    background-color: #18A585;
+}
+
+.profile .details .name {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.profile .details .btn {
+    width: 60%;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    margin: 10px auto;
+    padding: 3px;
+    background-color: #2ED4AE;
+    color: #F6FFFE;
+    cursor: pointer;
+}
+.profile .details .btn:hover {
+    background-color: #F6FFFE;
+    color: #18A585;
 }
 
 h6 {
@@ -36,11 +117,14 @@ h6 {
 }
 
 .content {
-    position: relative;
-    min-height: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 240px);
+    left: 240px;
+    margin: 10px;
 }
+
+
 
 #signup-form ul {
     margin: 10px auto;
@@ -116,21 +200,4 @@ h6 {
 #login-form ul input[type=submit]:hover {
     border: 1px solid #F6FFFE;
     font-weight: bold;
-}
-
-.blank30px {
-    padding-top: 30px;
-}
-.blank50px {
-    padding-top: 50px;
-}
-.blank100px {
-    padding-top: 100px;
-}
-
-footer {
-    background-color: #2ED4AE;
-    width: 100%;
-    height: 100px;
-    color: #F6FFFE;
 }
