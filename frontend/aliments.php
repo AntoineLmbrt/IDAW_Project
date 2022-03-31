@@ -12,15 +12,25 @@
 
 <script>
     $(document).ready(function () {
-        $('#aliments').DataTable({
-            'order': [],
-            'ajax': '../backend/aliments.php',
-            'colums': [
-                {"aliments":"id_aliment"},
-                {"aliments":"nom"},
-                {"aliments":"type"},
-                {"aliments":"nb_calories"}
-            ]
-        });
+         $.ajax({
+            url:"../backend/aliments.php",
+            dataType:'json',
+        })
+        .done(function(response){
+            console.log(response);
+            $('#aliments').DataTable({
+                data: response['data'],
+                columns : [
+                    {data:"id_aliment"},
+                    {data:"nom"},
+                    {data:"type"},
+                    {data:"nb_calories"}
+                ]
+            });
+        })
+        .fail(function(){
+
+        })
     });
+    
 </script>

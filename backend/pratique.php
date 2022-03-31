@@ -38,6 +38,10 @@
                 }
             }
         break;
+
+        case 'POST':
+            ajoutPratique($conn);
+            break;
     }
     
 
@@ -93,7 +97,7 @@
         }
         echo $nbCalSport;  
     }
-
+    // Get journal des pratiques
     function Sport_jour($conn){
         $sql="SELECT sport.nom, pratique.temps, sport.nb_calories*pratique.temps/60 FROM pratique 
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
@@ -111,6 +115,33 @@
         }
         echo json_encode($rows);
         
+    }
+    //ajouter une Pratique
+    function ajoutPratique($conn){
+
+        //On cherche l'id du sport
+        $sql="SELECT id_sport FROM sport WHERE libelle ='".$_POST['nom']."'";
+        $res = $conn -> query($sql);
+        $res = $res->fetch.assoc();
+        $_POST['nom']=$res['id_sport'];
+        
+        //On créer la req SQL
+        $sql='';
+        foreach($_POST as $key=>$value){
+            if($key=='date'){
+                $timestamp = strtotime($value); 
+                $newDate = date("Y-m-d", $timestamp );
+                $sql=$sql.",'".$newDate."'";
+            }
+            else{
+                $sql=$sql.",".$value;
+            }
+
+        }
+        $sql="INSERT INTO pratique VALUE('".$_GET['login']."'".$sql.")";
+        $conn->query($sql);
+        $response='success';
+        echo json_encode($response,0);
     }
 
 ?>

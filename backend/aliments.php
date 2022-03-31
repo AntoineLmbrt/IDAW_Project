@@ -7,9 +7,12 @@
     $sql = "SELECT * FROM aliment";
     $result = $conn->query($sql);
 
-    $rows = array();
+    $response=array();
     while($row = $result->fetch_assoc()) {
         $rows[] = $row;
     }
-    echo json_encode($rows);
+    
+    $rows = mb_convert_encoding($rows,'UTF-8', 'CP1252');
+    $response['data']=$rows;
+    echo json_encode($response);
 ?>

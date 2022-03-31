@@ -138,10 +138,12 @@
                 }
             }
 
-
+            // On envoit les données dans mySQL
             $sql="INSERT INTO utilisateur VALUES(".$sql.")";
-            $response['sql']=$sql;
+            $response='success';
             $conn -> query($sql);
+
+            //On lance la session
             session_start();
             $_SESSION["login"]=$_POST['login'];
             $_SESSION["password"]=$_POST['password'];
