@@ -27,7 +27,7 @@
         break;
         
         case "POST":
-            User($conn);
+            ajouterUser($conn);
     }
 
 
@@ -75,7 +75,7 @@
 
 
     // Ajouter ou modifier un utilisateur
-    function User($conn){
+    function ajouterUser($conn){
         // On regarde si le login est unique.
         $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['login']."'";
         $res = $conn -> query($sql);

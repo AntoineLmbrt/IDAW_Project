@@ -18,17 +18,26 @@
         })
         .done(function(response){
             console.log(response);
-            $('#aliments').DataTable({
+            var table=$('#aliments').DataTable({
+                dom: '<"#buttons"B><"clear">lfrtip',
+                buttons: [
+                        {
+                            text: 'My button',
+                            action: function () {
+                                alert( 'Button activated' );
+                            }
+                        }
+                ],
                 data: response['data'],
                 columns : [
                     {data:"id_aliment"},
                     {data:"nom"},
                     {data:"type"},
                     {data:"nb_calories"}
-                ]
+                ],
             });
-        })
-        .fail(function(){
+        }).fail(function(){
+            console.log("REQ AJAX FAILED");
         })
     });
 </script>
