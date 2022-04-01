@@ -5,6 +5,16 @@
             <th>Nom</th>
             <th>Type</th>
             <th>Calories</th>
+            <th>Protéines (g/100g)</th>
+            <th>Glucides (g/100g)</th>
+            <th>Lipides (g/100g)</th>
+            <th>Glucose (g/100 g)</th>
+            <th>Lactose (g/100 g)</th>
+            <th>Alcool (g/100 g)</th>
+            <th>Cholestérol (mg/100 g)</th>
+            <th>Sel chlorure de sodium (g/100 g)</th>
+            <th>Calcium (mg/100 g)</th>
+            <th>Sucres (g/100 g)</th>
         </tr>
     </thead>
 </table>
@@ -33,7 +43,17 @@
                     {data:"id_aliment"},
                     {data:"nom"},
                     {data:"type"},
-                    {data:"nb_calories"}
+                    {data:"nb_calories"},
+                    {data:"Protéines (g/100g) "},
+                    {data:"Glucides (g/100g)"},
+                    {data:"Lipides (g/100g)"},
+                    {data:"Glucose (g/100 g)"},
+                    {data:"Lactose (g/100 g)"},
+                    {data:"Alcool (g/100 g)"},
+                    {data:"Cholestérol (mg/100 g)"},
+                    {data:"Sel chlorure de sodium (g/100 g)"},
+                    {data:"Calcium (mg/100 g)"},
+                    {data:"Sucres (g/ 100g)"},
                 ],
             });
         }).fail(function(){
