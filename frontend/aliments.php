@@ -1,3 +1,4 @@
+<h1 id="title">Aliments</h1>
 <table id="aliments" class="display">
     <thead>
         <tr>
@@ -25,7 +26,8 @@
                     {data:"nom"},
                     {data:"type"},
                     {data:"nb_calories"}
-                ]
+                ],
+                scrollY: 400
             });
         })
         .fail(function(){
