@@ -29,7 +29,7 @@
                 </ul>
                 <div class="profile">
                     <div class ="details">
-                        <div class="name">NOM Prénom</div>
+                        <div class="name"></div>
                         <div class="btn" id="logout">Déconnexion</div>
                     </div>
                 </div>
@@ -37,3 +37,18 @@
         ');
     }
 ?>
+<script>
+    $('document').ready(chargementProfil());
+
+    function chargementProfil(){
+        $.ajax({
+            url:'../backend/utilisateur.php?function=profil',
+            dataType:'json',
+
+        }).done(function(donnée){
+            $('.name').append(`${donnée["prenom"]} ${donnée['nom']}`);
+        }).fail(function(){
+
+        })
+    }
+</script>
