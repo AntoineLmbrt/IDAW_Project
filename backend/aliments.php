@@ -90,10 +90,10 @@
             $id_aliment=$conn->insert_id;
         };
         $response="success";
-        foreach($_POST['nutriment'] as $key => $value){
-            if($conn->query("INSERT INTO contient VALUES(".$key.",".$id_aliment.",".$value.")")==FALSE){
+        foreach($_POST['nutriments'] as $key => $value){
+            if($conn->query("INSERT INTO contient VALUES(".$id_aliment.",".$key.",".$value.")")==FALSE){
                 $response="failed";
-            };
+            }
         }
         echo json_encode($response);
     }
