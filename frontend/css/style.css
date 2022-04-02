@@ -12,6 +12,7 @@ body {
     position: relative;
     width: 100%;
     overflow: hidden;
+    background-color: #F6FFFE;
 }
 
 .menu {
@@ -122,6 +123,21 @@ h6 {
     width: calc(100% - 240px);
     left: 240px;
     margin: 10px;
+}
+
+#dashboard {
+    display: flex;
+}
+
+.meter {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.box {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #A4A4A4;
 }
 
 #aliments_wrapper {
