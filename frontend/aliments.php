@@ -32,23 +32,18 @@
             var table=$('#aliments').DataTable({
                 dom: '<"#buttons"B><"clear">lfrtip',
                 buttons: [
-                        {
-                            text: 'My button',
-                            action: function () {
-                                alert( 'Button activated' );
-                            }
+                    {
+                        text: 'My button',
+                        action: function () {
+                            alert( 'Button activated' );
                         }
+                    }
                 ],
                 data: response['data'],
                 columns : [
                     {data:"id_aliment"},
                     {data:"nom"},
                     {data:"type"},
-<<<<<<< HEAD
-                    {data:"nb_calories"}
-                ],
-                scrollY: 400
-=======
                     {data:"nb_calories"},
                     {data:"Protéines (g/100g) "},
                     {data:"Glucides (g/100g)"},
@@ -59,12 +54,13 @@
                     {data:"Cholestérol (mg/100 g)"},
                     {data:"Sel chlorure de sodium (g/100 g)"},
                     {data:"Calcium (mg/100 g)"},
-                    {data:"Sucres (g/ 100g)"},
+                    {data:"Sucres (g/ 100g)"}
                 ],
->>>>>>> bfdb42afedeb0338ea5aac2baef826df4f7628c2
+                scrollX: 200,
+                scrollY: 350
             });
         }).fail(function(){
             console.log("REQ AJAX FAILED");
-        })
+        });
     });
 </script>
