@@ -4,7 +4,7 @@
 
     function chargementDonneeProfil(){
         $.ajax({
-            url:"http://project/backend/utilisateur.php?function=profil",
+            url:"../backend/utilisateur.php?function=profil",
             dataType:"json",
         }).done(function(data){
             console.log("REQ AJAX SUCCED");

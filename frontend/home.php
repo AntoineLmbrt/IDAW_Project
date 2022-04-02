@@ -3,7 +3,9 @@
     <div class="box">
         <div id="graph"></div>
     </div>
-    <div id="journalRepas"></div>
+    <div class="box">
+        <div id="journalRepas"></div>
+    </div>
     <div id="journalSport"></div>
 </div>
 
@@ -23,8 +25,8 @@
     let boxSize = (radius + padding) * 2;
 
     // valeurs du graphique
-    let value = nbCalorie ; // mettre vraie valeur
-    let objective = objectif; //mettre vraie valeur
+    let value = nbCalorie;
+    let objective = objectif;
 
     let start = 0;
     let end = value/objective;
@@ -89,7 +91,7 @@
     function chargementDonnee(){
         // Dashboard
         $.ajax({
-            url:'http://project/backend/utilisateur.php?function=objectif',
+            url:'../backend/utilisateur.php?function=objectif',
             dataType:'json',
             async :false,
         }).done(function(data){
@@ -98,7 +100,7 @@
             objectif=parseInt(data);
             // On récupère les calorie mangé
             $.ajax({
-                url:'http://project/backend/repas.php?time=day',
+                url:'../backend/repas.php?time=day',
                 dataType:'json',
                 async :false,
             }).done(function(data){
@@ -106,7 +108,7 @@
                 nbCalorie-=parseInt(data);
                 // On récupère les calories dépensé
                 $.ajax({
-                    url:'http://project/backend/pratique.php?time=day',
+                    url:'../backend/pratique.php?time=day',
                     dataType:'json',
                     async :false,
                 }).done(function(data){
@@ -137,7 +139,7 @@
 
     function journalRepas(){
         $.ajax({
-            url:'http://project/backend/repas.php?time=3days',
+            url:'../backend/repas.php?time=3days',
             dataType:'json',
         }).done(function(data){
             console.log('REQ AJAX SUCCED');
@@ -150,7 +152,7 @@
 
     function journalSport(){
         $.ajax({
-            url:'http://project/backend/pratique.php?time=3days',
+            url:'../backend/pratique.php?time=3days',
             dataType:'json',
         }).done(function(data){
             console.log('REQ AJAX SUCCED');
