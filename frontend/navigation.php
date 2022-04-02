@@ -3,6 +3,7 @@
         $myMenu = array(
             'home' => array('Home'),
             'profil' => array('Profil'),
+            'journal' => array('Journal'),
             'aliments' => array('Aliments')
         );
         
