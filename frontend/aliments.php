@@ -56,6 +56,7 @@
                     {data:"Calcium (mg/100 g)"},
                     {data:"Sucres (g/ 100g)"}
                 ],
+                rowId:'id_aliment',
                 scrollX: 200,
                 scrollY: 350
             });

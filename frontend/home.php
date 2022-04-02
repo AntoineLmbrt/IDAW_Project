@@ -10,7 +10,10 @@
 <script>
 
     // GRAPH
-
+    var nbCalorie = 0;
+    var objectif=0;
+    chargementDonnee();
+    
     // dimensions et couleur du graphique
     let color = '#2ED4AE';
     let radius = 150;
@@ -20,8 +23,8 @@
     let boxSize = (radius + padding) * 2;
 
     // valeurs du graphique
-    let value = 4300; // mettre vraie valeur
-    let objective = 10000; //mettre vraie valeur
+    let value = nbCalorie ; // mettre vraie valeur
+    let objective = objectif; //mettre vraie valeur
 
     let start = 0;
     let end = value/objective;
@@ -83,16 +86,12 @@
         }
     })();
 
-
-
-    $('body').ready(chargementDonnee());
-    var nbCalorie = 0;
-    var objectif=0
     function chargementDonnee(){
         // Dashboard
         $.ajax({
             url:'http://project/backend/utilisateur.php?function=objectif',
             dataType:'json',
+            async :false,
         }).done(function(data){
             console.log("REQ AJAX SUCCED");
             nbCalorie+=parseInt(data);
@@ -101,6 +100,7 @@
             $.ajax({
                 url:'http://project/backend/repas.php?time=day',
                 dataType:'json',
+                async :false,
             }).done(function(data){
                 console.log('REQ AJAX SUCCED');
                 nbCalorie-=parseInt(data);
@@ -108,11 +108,12 @@
                 $.ajax({
                     url:'http://project/backend/pratique.php?time=day',
                     dataType:'json',
+                    async :false,
                 }).done(function(data){
                     console.log('REQ AJAX SUCCED');
                     nbCalorie+=parseInt(data);
 
-                    $('#graphCalorie').append(`${nbCalorie}/${objectif}`)
+                   
                 }).fail(function(){
                     console.log("REQ AJAX FAILED");
                 })
