@@ -64,6 +64,10 @@
         WHERE login='".$_SESSION['login']."'";
         $res=$conn -> query($sql);
         $row = $res->fetch_assoc();
+
+        $timestamp = strtotime($row['date_naissance']); 
+        $row["date_naissance"] = date("d/m/Y", $timestamp );
+
         $row = mb_convert_encoding($row,'UTF-8', 'CP1252');
         echo json_encode($row);
     }
@@ -99,7 +103,9 @@
                     $sql=$sql.$value.",";
                 }
                 elseif($key == 'date'){
-                    $sql=$sql.age($value).",";
+                    $timestamp = strtotime($value); 
+                    $newDate = date("Y-m-d", $timestamp );
+                    $sql=$sql.age($value).", '".$newDate."',";
                 }
                 else{
                   $sql=$sql."'".$value."',";
@@ -135,8 +141,9 @@
 
             // On envoit les données dans mySQL
             $sql="INSERT INTO utilisateur VALUES(".$sql.")";
-            $response='success';
-            $conn -> query($sql);
+            if($conn -> query($sql)==TRUE){
+                $response='success';
+            }else($response = 'failed');
 
             //On lance la session
             session_start();
