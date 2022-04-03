@@ -60,7 +60,7 @@
     function Sport_Calorie_week($conn){
         // Gets sport de la semaine
 
-        $date_ajd=date('Y-m-d');
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
         $date_db_semaine=date('Y-m-d', strtotime("this week"));
 
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
@@ -78,7 +78,7 @@
     function Sport_Calorie_month($conn){
         // Gets sport du mois
 
-        $date_ajd=date('Y-m-d');
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
         $date_db_month=date('Y-m-d', strtotime("first day of this month"));
 
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
