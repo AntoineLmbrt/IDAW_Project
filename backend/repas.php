@@ -143,7 +143,7 @@
         foreach($_POST as $key=>$value){
             if($key=='date'){
                 $timestamp = strtotime($value); 
-                $newDate = date("Y-m-d", $timestamp );
+                $newDate = date("Y-m-d H:i:s", $timestamp );
                 $sql=$sql.",'".$newDate."'";
             }
             else{
