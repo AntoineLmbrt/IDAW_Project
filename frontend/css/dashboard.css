@@ -34,7 +34,6 @@
 #journalRepas table,
 #journalSport table {
     height: auto;
-    width: 700px;
     margin: 10px auto;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
@@ -47,24 +46,54 @@
 
 #journalRepas table tbody tr,
 #journalSport table tbody tr {
-    height: 50px;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
 
 #journalRepas table tbody th,
 #journalSport table tbody th {
-    overflow: hidden;
+    height: 50px;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
 
-#journalRepas table tbody th input,
-#journalRepas table tbody th select,
-#journalSports table tbody th input,
-#journalSports table tbody th select {
+#journalRepas table .table-date,
+#journalSport table .table-date {
+    width: 150px;
+}
+
+#journalRepas table .table-item-name,
+#journalSport table .table-item-name {
+    width: 300px;
+}
+
+#journalRepas table .table-quantity,
+#journalSport table .table-duration {
+    width: 150px;
+}
+
+#journalRepas table .table-calories,
+#journalSport table .table-calories {
+    width: 100px;
+}
+
+#journalRepas table tbody th #inputRepasDate,
+#journalSport table tbody th #inputSeanceDate {
     margin: 0 5px;
-    max-width: 200px;
+    width: 130px;
+}
+
+#journalRepas table tbody th #inputRepasName,
+#journalSport table tbody th #inputSportName {
+    margin: 0 5px;
+    width: 280px;
+}
+
+#journalRepas table tbody th #inputRepasQuantity,
+#journalSport table tbody th #inputSeanceDuration {
+    margin: 0 5px;
+    width: 130px;
+    text-align: center;
 }
 
 #journalRepas form,
