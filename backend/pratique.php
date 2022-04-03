@@ -99,9 +99,9 @@
     }
     // Get journal des pratiques
     function Sport_jour($conn){
-        $sql="SELECT sport.nom, pratique.temps, sport.nb_calories*pratique.temps/60 FROM pratique 
+        $sql="SELECT sport.nom, pratique.temps, sport.nb_calories*pratique.temps/60, pratique.date FROM pratique 
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-        WHERE pratique.login = '".$_SESSION['login']."' AND pratique.date='".date('Y-m-d')."'";
+        WHERE pratique.login = '".$_SESSION['login']."' ORDER BY pratique.date DESC LIMIT 2";
         
 
         $res=$conn -> query($sql);
@@ -120,10 +120,10 @@
     function ajoutPratique($conn){
 
         //On cherche l'id du sport
-        $sql="SELECT id_sport FROM sport WHERE libelle ='".$_POST['nom']."'";
+        $sql="SELECT id_sport FROM sport WHERE nom ='".$_POST['nom']."'";
         $res = $conn -> query($sql);
-        $res = $res->fetch.assoc();
-        $_POST['nom']=$res['id_sport'];
+        $res2 = $res->fetch_assoc();
+        $_POST['nom']=$res2['id_sport'];
         
         //On créer la req SQL
         $sql='';
@@ -138,9 +138,13 @@
             }
 
         }
-        $sql="INSERT INTO pratique VALUE('".$_GET['login']."'".$sql.")";
-        $conn->query($sql);
-        $response='success';
+        $sql="INSERT INTO pratique VALUE('".$_SESSION['login']."'".$sql.")";
+        if($conn->query($sql)==TRUE){;
+            $response['resultat']='success';
+        }
+        else{
+            $response['resultat']='failed';
+        }
         echo json_encode($response,0);
     }
 

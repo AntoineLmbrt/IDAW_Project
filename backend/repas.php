@@ -38,6 +38,9 @@
                 }
             }
         break;
+        case 'POST':
+            ajoutRepas($conn);
+        break;
     }
     
 
@@ -94,9 +97,9 @@
 
 
     function Repas_jour($conn){
-        $sql="SELECT aliment.nom, repas.quantite, aliment.nb_calories*repas.quantite FROM repas 
-        LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_SESSION['login']."' AND repas.date='".date('Y-m-d')."'";
+        $sql="SELECT aliment.nom, repas.quantite, aliment.nb_calories*repas.quantite, repas.date FROM repas 
+        LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment
+        WHERE repas.login = '".$_SESSION['login']."' ORDER BY repas.date DESC LIMIT 2";
 
         $res=$conn -> query($sql);
         $rows = array();
@@ -109,5 +112,39 @@
         }
         echo json_encode($rows);
         
+    }
+
+
+    //ajouter une Pratique
+    function ajoutRepas($conn){
+
+        //On cherche l'id du sport
+        $sql="SELECT id_aliment FROM aliment WHERE nom ='".$_POST['nom']."'";
+        echo $sql;
+        $res = $conn -> query($sql);
+        $res2 = $res->fetch_assoc();
+        $_POST['nom']=$res2['id_aliment'];
+        
+        //On créer la req SQL
+        $sql='';
+        foreach($_POST as $key=>$value){
+            if($key=='date'){
+                $timestamp = strtotime($value); 
+                $newDate = date("Y-m-d", $timestamp );
+                $sql=$sql.",'".$newDate."'";
+            }
+            else{
+                $sql=$sql.",".$value;
+            }
+
+        }
+        $sql="INSERT INTO repas VALUE('".$_SESSION['login']."'".$sql.")";
+        if($conn->query($sql)==TRUE){;
+            $response['resultat']='success';
+        }
+        else{
+            $response['resultat']='failed';
+        }
+        echo json_encode($response,0);
     }
 ?>

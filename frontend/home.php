@@ -17,7 +17,7 @@
             <div id="journalRepas">
                 <h2 class="dashboard-title">Derniers repas :</h2>
                 <form>
-                    <table>
+                    <table id="repas">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -31,23 +31,11 @@
                                 <th><input type="date" id="dateRepas" name="date"></th>
                                 <th><input type="text" id="nomRepas" name="nom"></th>
                                 <th><input type="text" id="qteRepas" name="quantite"></th>
-                                <th><input type="text" id="nbCaloriesRepas" name="calories"></th>
-                            </tr>
-                            <tr>
-                                <th>01/01/2022</th>
-                                <th>Purée de piment</th>
-                                <th>2</th>
-                                <th>300</th>
-                            </tr>
-                            <tr>
-                                <th>06/05/2023</th>
-                                <th>Pomme de terre</th>
-                                <th>5</th>
-                                <th>500</th>
+                                <th></th>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn">Ajouter un repas</button>
+                    <button class="btn" id="ajoutRepas">Ajouter un repas</button>
                 </form>
             </div>
         </div>
@@ -55,37 +43,27 @@
             <div id="journalSport">
                 <h2 class="dashboard-title">Dernieres séances de sport :</h2>
                 <form>
-                    <table>
+                    <table id="pratique">
                         <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Sport</th>
-                                <th>Durée</th>
+                                <th>Durée (en min)</th>
                                 <th>Calories</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th><input type="date" id="dateSeance" name="date"></th>
-                                <th><input type="text" id="nomSport" name="nom"></th>
-                                <th><input type="text" id="dureeSeance" name="quantite"></th>
-                                <th><input type="text" id="nbCaloriesSeance" name="calories"></th>
-                            </tr>
-                            <tr>
-                                <th>01/01/2022</th>
-                                <th>Tennis</th>
-                                <th>2 heures</th>
-                                <th>300</th>
-                            </tr>
-                            <tr>
-                                <th>06/05/2023</th>
-                                <th>Football</th>
-                                <th>1 heure</th>
-                                <th>500</th>
+                                <form id='pratiqueForm'>
+                                    <th><input type="date" id="dateSeance" name="date"></th>
+                                    <th><input type="text" id="nomSport" name="nom"></th>
+                                    <th><input type="text" id="dureeSeance" name="quantite"></th>
+                                    <th></th>
+                                </form>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn">Ajouter une séance</button>
+                    <button class="btn" id='ajoutPratique'>Ajouter une séance</button>
                 </form>
             </div>
         </div>
@@ -94,6 +72,51 @@
 </div>
 
 <script>
+    //gestion bouton
+    $('#ajoutPratique').on('click', function(){
+        event.preventDefault();
+        if($('#dateSeance').val() && $('#nomSport').val() && $('#dureeSeance').val()){
+            $.ajax({
+                url:'../backend/pratique.php',
+                method: 'POST',
+                dataType:'json',
+                data:{
+                    nom:$('#nomSport').val(),
+                    date:$('#dateSeance').val(),
+                    temps:$('#dureeSeance').val(),
+                }
+            }).done(function(data){
+                console.log(data);
+            }).fail(function(){
+                console.log('FAILED');
+            })
+        }else{
+             console.log('Manque des champs')
+        }
+    })
+
+    $('#ajoutRepas').on('click', function(){
+        event.preventDefault();
+        if($('#dateRepas').val() && $('#nomRepas').val() && $('#qteRepas').val()){
+            $.ajax({
+                url:'../backend/repas.php',
+                method: 'POST',
+                dataType:'json',
+                data:{
+                    nom:$('#nomRepas').val(),
+                    quantite:$('#qteRepas').val(),
+                    date:$('#dateRepas').val(),
+                }
+            }).done(function(data){
+                console.log(data);
+            }).fail(function(){
+                console.log('FAILED');
+            })
+        }else{
+             console.log('Manque des champs')
+        }
+    })
+
 
     // GRAPH
     var nbCalorie = 0;
@@ -228,6 +251,9 @@
         }).done(function(data){
             console.log('REQ AJAX SUCCED');
             console.log(data);
+            for(let i in data){
+                $('#repas tbody' ).append(`<tr><th>${data[i]['date']}</th><th>${data[i]['nom']}</th><th>${data[i]['quantite']}</th><th>${data[i]['aliment.nb_calories*repas.quantite']}</th></tr>`);
+            }
             
         }).fail(function(){
             console.log('REQ AJAX FAILED')
@@ -241,7 +267,9 @@
         }).done(function(data){
             console.log('REQ AJAX SUCCED');
             console.log(data);
-            
+            for(let i in data){
+                $('#pratique tbody' ).append(`<tr><th>${data[i]['date']}</th><th>${data[i]['nom']}</th><th>${data[i]['temps']} min</th><th>${data[i]['sport.nb_calories*pratique.temps/60']}</th></tr>`);
+            }
         }).fail(function(){
             console.log('REQ AJAX FAILED')
         })
