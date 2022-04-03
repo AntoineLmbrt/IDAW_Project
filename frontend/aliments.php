@@ -94,6 +94,7 @@
 
 <script>
     var ligneSelected=null;
+    var table=null;
     $(document).ready(function () {
         $.ajax({
             url:"../backend/aliments.php",
@@ -101,7 +102,7 @@
         })
         .done(function(response){
             console.log(response);
-            var table=$('#aliments').DataTable({
+            table=$('#aliments').DataTable({
                 dom: 'lfrtip',
                 data: response['data'],
                 columns : [
@@ -139,9 +140,9 @@
         });
     });
     // Si on appuie sur EDIT
-    $('#ADD').on("click", function(){
+    $('#EDIT').on("click", function(){
         event.preventDefault();
-        
+
         $.ajax({
             url:'../backend/aliments.php',
             method: 'POST',
@@ -149,6 +150,7 @@
             data:{
                 function:"ADD",
                 aliment:{
+                    id:$('#id').val(),
                     nom:$('#nom').val(),
                     type:$('#type').val(),
                     nb_calories:$('#calories').val(),
@@ -176,7 +178,21 @@
     // Si on appuie sur add
     $('#ADD').on("click", function(){
         event.preventDefault();
-
+        let newCol={
+            nom:$('#nom').val(),
+            type:$('#type').val(),
+            nb_calories:$('#calories').val(),
+            "Protéines (g/100g) ":$('#proteines').val(),
+            "Glucides (g/100g)":$('#glucides').val(),
+            "Lipides (g/100g)":$('#lipides').val(),
+            "Glucose (g/100 g)":$('#glucose').val(),
+            "Lactose (g/100 g)":$('#lactose').val(),
+            "Alcool (g/100 g)":$('#alcool').val(),
+            "Cholestérol (mg/100 g)":$('#cholesterol').val(),
+            "Sel chlorure de sodium (g/100 g)":$('#sel').val(),
+            "Calcium (mg/100 g)":$('#calcium').val(),
+            "Sucres (g/ 100g)":$('#sucre').val()
+        }
         $.ajax({
             url:'../backend/aliments.php',
             method: 'POST',
@@ -202,7 +218,13 @@
                 }
             }
         }).done(function(data){
-            if(data=='success'){
+            if(data['resultat']=='success'){
+                id={
+                    'id_aliment':data['id']
+                }
+                newCol['id_aliment']=""+data['id']+"";
+                console.log(newCol);
+                table.row.add(newCol);
                 table.draw();
             }else{
                 console.log("SQL FAILED");
@@ -211,10 +233,21 @@
             console.log("REQ AJAX FAILED");
         })
     })
-    // A chaque changment de page, on réabonne toutes les lignes.
+
+    // A chaque changment de page, on réabonne toutes les lignes. Et on rentre la selection dans le form
     function selectionLigne(idLigne){
+        let lignes=['id','nom','type','calories','proteines','glucides','lipides','glucose','lactose','alcool','cholesterol','sel','calcium','sucre']; 
         $('#'+ligneSelected).removeClass("selected");
         $('#'+idLigne).addClass("selected");
         ligneSelected=idLigne;
+        let temp=0;
+        $('#'+ligneSelected).children().each(function(){
+            if(lignes[temp]=='id'){
+                temp++;
+            }else{
+                document.getElementById(lignes[temp]).value = $(this).html();
+                temp++;
+            }
+        });
     }
 </script>
