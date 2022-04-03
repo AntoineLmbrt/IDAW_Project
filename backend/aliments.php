@@ -89,12 +89,13 @@
         if($conn->query($sql) === TRUE){
             $id_aliment=$conn->insert_id;
         };
-        $response="success";
-        foreach($_POST['nutriment'] as $key => $value){
-            if($conn->query("INSERT INTO contient VALUES(".$key.",".$id_aliment.",".$value.")")==FALSE){
-                $response="failed";
-            };
+        $response['resultat']="success";
+        foreach($_POST['nutriments'] as $key => $value){
+            if($conn->query("INSERT INTO contient VALUES(".$id_aliment.",".$key.",".$value.")")==FALSE){
+                $response['resultat']="failed";
+            }
         }
+        $response['id']=$id_aliment;
         echo json_encode($response);
     }
 ?>
