@@ -7,9 +7,11 @@
     font-family: 'Exo', sans-serif;
     font-weight: 400;
 
-    --white-color: #F6FFFE;
     --main-color: #2ED4AE;
     --secondary-color: #18A585;
+    --white-color: #F6FFFE;
+    --light-grey-color: #C9CACC;
+    --grey-color: #A4A4A5;
     --background-color: #F2F2F2;
     --shadow-color: #A4A4A4;
     --danger-color: #E83333;
@@ -140,8 +142,15 @@ h6 {
     margin: 10px;
 }
 
-#dashboard, #profile {
+.info {
+    margin: 10px 0;
+    text-align: center;
+    font-style: italic;
+}
+
+#dashboard, #profile, #aliments-form {
     display: flex;
+    justify-content: center;
 }
 
 .meter {
@@ -154,9 +163,149 @@ h6 {
     box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
+#dashboard-first-column {
+    margin: 0 10px;
+    width: 300px;
+}
+
+#dashboard-second-column {
+    margin: 0 10px;
+    width: 800px;
+}
+
+.dashboard-title {
+    margin: auto;
+    padding: 10px;
+    background-color: var(--main-color);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: var(--white-color);
+}
+
+.graph {
+    width: 300px;
+    margin: 0 0 20px 0;
+}
+
+.journal {
+    height: 280px;
+    margin: 0 0 20px 0;
+}
+
+.buttons {
+    height: 160px;
+}
+
+.buttons .btn {
+    width: 75%;
+    margin: 6px auto;
+    padding: 3px;
+    border-radius: 6px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    text-align: center;
+    cursor: pointer;
+}
+
+.buttons .btn:hover {
+    background-color: var(--main-color);
+}
+
+.buttons a {
+    text-decoration: none;
+}
+
+
+#journalRepas table,
+#journalSport table {
+    height: auto;
+    width: 700px;
+    margin: 10px auto;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas table thead,
+#journalSport table thead {
+    background-color: var(--light-grey-color);
+}
+
+#journalRepas table tbody tr,
+#journalSport table tbody tr {
+    height: 50px;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas table tbody th,
+#journalSport table tbody th {
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas form,
+#journalSport form {
+    text-align: center;
+}
+
+#journalRepas form .btn,
+#journalSport form .btn {
+    width: 50%;
+    padding: 3px;
+    border-radius: 6px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+}
+
+#journalRepas form .btn:hover,
+#journalSport form .btn:hover {
+    background-color: var(--main-color);
+} 
+
 #aliments_wrapper {
     width: 95%;
     margin: auto;
+    font-size: 14px;
+}
+
+#aliments-form .box {
+    margin: 5px auto;
+}
+
+#aliments-form form {
+    padding: 10px;
+    background-color: var(--light-grey-color);
+    border-radius: 5px;
+}
+
+#aliments-form form ul li {
+    list-style: none;
+}
+
+#aliments-form form ul li label {
+    margin: 0 5px; 
+}
+
+#aliments-form .aliments-form-item {
+    display: inline-flex;
+}
+
+#aliments-form #aliments-form-buttons {
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+#aliments-form #aliments-form-buttons button {
+    margin: 0px 20px;
+    padding: 3px;
+    border-radius: 6px;
+    background-color: var(--grey-color);
+    cursor: pointer;
+}
+#aliments-form #aliments-form-buttons button:hover {
+    background-color: var(--white-color);
 }
 
 .content #title {
@@ -213,12 +362,6 @@ h6 {
 	display: block;
 	list-style: none;
 	margin: 10px 0 0 0;
-}
-
-#signup-form label {
-    margin: 0 0 3px 0;
-	padding: 0px;
-	display: block;
 }
 
 
