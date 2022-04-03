@@ -113,7 +113,6 @@
 
         //On cherche l'id du sport
         $sql="SELECT id_aliment FROM aliment WHERE nom ='".$_POST['nom']."'";
-        echo $sql;
         $res = $conn -> query($sql);
         $res2 = $res->fetch_assoc();
         $_POST['nom']=$res2['id_aliment'];
