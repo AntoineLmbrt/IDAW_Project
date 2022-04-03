@@ -1,10 +1,94 @@
 <h1 id="title">Dashboard</h1>
 <div id="dashboard">
-    <div class="box">
-        <div id="graph"></div>
+    <div id="dashboard-first-column">
+        <div class="box graph">
+            <h2 class="dashboard-title">Calories quotidiennes :</h2>
+            <div id="graph"></div>
+        </div>
+        <div class="box buttons">
+            <h2 class="dashboard-title">Options :</h2>
+            <a href="index.php?page=aliments"><div class="btn">Ajouter un aliment</div></a>
+            <a href="index.php?page=sport"><div class="btn">Ajouter un sport</div></a>
+            <a href="index.php?page=profil"><div class="btn">Profil</div></a>
+        </div>
     </div>
-    <div class="box">
-        <div id="journalRepas"></div>
+    <div id="dashboard-second-column">
+        <div class="box journal">
+            <div id="journalRepas">
+                <h2 class="dashboard-title">Derniers repas :</h2>
+                <form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Aliment</th>
+                                <th>Quantité</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><input type="date" id="dateRepas" name="date"></th>
+                                <th><input type="text" id="nomRepas" name="nom"></th>
+                                <th><input type="text" id="qteRepas" name="quantite"></th>
+                                <th><input type="text" id="nbCaloriesRepas" name="calories"></th>
+                            </tr>
+                            <tr>
+                                <th>01/01/2022</th>
+                                <th>Purée de piment</th>
+                                <th>2</th>
+                                <th>300</th>
+                            </tr>
+                            <tr>
+                                <th>06/05/2023</th>
+                                <th>Pomme de terre</th>
+                                <th>5</th>
+                                <th>500</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn">Ajouter un repas</button>
+                </form>
+            </div>
+        </div>
+        <div class="box journal">
+            <div id="journalSport">
+                <h2 class="dashboard-title">Dernieres séances de sport :</h2>
+                <form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Sport</th>
+                                <th>Durée</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><input type="date" id="dateSeance" name="date"></th>
+                                <th><input type="text" id="nomSport" name="nom"></th>
+                                <th><input type="text" id="dureeSeance" name="quantite"></th>
+                                <th><input type="text" id="nbCaloriesSeance" name="calories"></th>
+                            </tr>
+                            <tr>
+                                <th>01/01/2022</th>
+                                <th>Tennis</th>
+                                <th>2 heures</th>
+                                <th>300</th>
+                            </tr>
+                            <tr>
+                                <th>06/05/2023</th>
+                                <th>Football</th>
+                                <th>1 heure</th>
+                                <th>500</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn">Ajouter une séance</button>
+                </form>
+            </div>
+        </div>
     </div>
     <div id="journalSport"></div>
 </div>
@@ -18,9 +102,9 @@
     
     // dimensions et couleur du graphique
     let color = '#2ED4AE';
-    let radius = 150;
-    let border = 20;
-    let padding = 30;
+    let radius = 125;
+    let border = 15;
+    let padding = 25;
 
     let boxSize = (radius + padding) * 2;
 
