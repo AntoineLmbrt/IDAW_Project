@@ -5,7 +5,7 @@
             'profil' => array('name' => 'Profil', 'icon' => '<i class="fa-solid fa-user"></i>'),
             'journal' => array('name' => 'Journal', 'icon' => '<i class="fa-solid fa-newspaper"></i>'),
             'aliments' => array('name' => 'Aliments', 'icon' => '<i class="fa-solid fa-carrot"></i>'),
-            'sports' => array('name' => 'Sports', 'icon' => '<i class="fa-solid fa-carrot"></i>')
+            'sports' => array('name' => 'Sports', 'icon' => '<i class="fa-solid fa-football"></i>')
         );
         
         echo('
