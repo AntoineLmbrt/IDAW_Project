@@ -94,6 +94,7 @@ $('#ajoutPratique').on('click', function(){
         }).fail(function(){
             console.log('FAILED');
         })
+        location.reload();
     } else {
             console.log('Manque des champs')
     }
@@ -117,6 +118,7 @@ $('#ajoutRepas').on('click', function(){
         }).fail(function(){
             console.log('FAILED');
         })
+        location.reload();
     }else{
             console.log('Manque des champs')
     }
@@ -214,7 +216,7 @@ function journalRepasDashboard(){
         console.log('REQ AJAX SUCCED');
         console.log(data);
         for(let i in data){
-            $('#repas tbody' ).append(`<tr><th class="table-date">${data[i]['date']}</th><th class="table-item-name">${data[i]['nom']}</th><th class="table-duration">${data[i]['quantite']}</th><th class="table-calories">${data[i]['aliment.nb_calories*repas.quantite']}</th></tr>`);
+            $('#journalRepasDashboard table tbody' ).append(`<tr><td class="table-date">${data[i]['date']}</td><td class="table-item-name">${data[i]['nom']}</td><td class="table-quantity">${data[i]['quantite']}</td><td class="table-calories">${data[i]['aliment.nb_calories*repas.quantite']}</td></tr>`);
         }
         
     }).fail(function(){
@@ -230,7 +232,7 @@ function journalSportDashboard(){
         console.log('REQ AJAX SUCCED');
         console.log(data);
         for(let i in data){
-            $('#pratique tbody' ).append(`<tr><th class="table-date">${data[i]['date']}</th><th class="table-item-name">${data[i]['nom']}</th><th class="table-duration">${data[i]['temps']} min</th><th class="table-calories">${data[i]['sport.nb_calories*pratique.temps/60']}</th></tr>`);
+            $('#journalSportDashboard table tbody' ).append(`<tr><td class="table-date">${data[i]['date']}</td><td class="table-item-name">${data[i]['nom']}</td><td class="table-duration">${data[i]['temps']} min</td><td class="table-calories">${data[i]['sport.nb_calories*pratique.temps/60']}</td></tr>`);
         }
     }).fail(function(){
         console.log('REQ AJAX FAILED')
