@@ -28,6 +28,7 @@
     </ul>
 </form>
 <script>
+    $('.profile').remove()
     $('inputSexe').ready(chargementSexe());
     function chargementSexe(){
         $.ajax({

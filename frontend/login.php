@@ -3,11 +3,11 @@
     <ul>
         <li>
             <label>Login :</label>
-            <input type="text" name="login" id="inputLogin">
+            <input type="text" name="login" id="inputLogin" placeholder="Email">
         </li>
         <li>
             <label>Mot de passe :</label>
-            <input type="password" name="password" id="inputPassword">
+            <input type="password" name="password" id="inputPassword" placeholder="Mot de passe">
         </li>
         <li>
             <input type="submit" value="Connexion">
@@ -15,6 +15,9 @@
     </ul>
 </form>
 <script>
+
+    $('.profile').remove()
+
     function connection(){
         champsObligatoires = ["#inputLogin", "#inputPassword"]
         event.preventDefault();
