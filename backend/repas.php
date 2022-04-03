@@ -43,25 +43,24 @@
 
     function Repas_Calorie_day($conn){
         // Gets repas du jour
+        
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date='".date('Y-m-d')."'";
-
+        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND repas.date <='".date('Y-m-d H:i:s', strtotime("tomorrow"))."'";
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalRepas=0;
         while($row = $res->fetch_assoc()) { 
             $nbCalRepas= $nbCalRepas + $row['aliment.nb_calories*repas.quantite'];
         }
-        echo json_encode($nbCalRepas,0);  
+        echo json_encode($nbCalRepas,0); 
     
     }
 
     function Repas_Calorie_week($conn){
         // gestion de la date
-        $date_ajd=date('Y-m-d');
-        $date_db_semaine=date('Y-m-d', strtotime("this week"));
-
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
+        $date_db_semaine=date('Y-m-d H:i:s', strtotime("this week"));
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
         WHERE repas.login = '".$_SESSION['login']."'  AND repas.date <= '".$date_ajd."' AND repas.date >= '".$date_db_semaine."'";
@@ -76,8 +75,8 @@
     }
 
     function Repas_Calorie_month($conn){
-        $date_ajd=date('Y-m-d');
-        $date_db_month=date('Y-m-d', strtotime("first day of this month"));
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
+        $date_db_month=date('Y-m-d H:i:s', strtotime("first day of this month"));
 
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 

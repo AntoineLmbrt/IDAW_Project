@@ -4,8 +4,8 @@
 
     // SELECT sport.nom, sport.nb_calories*pratique.temps FROM pratique 
     // LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-    // WHERE repas.login = "alexis.poirot@etu.imt-lille-douai.fr" 
-    // ORDER BY repas.date ASC LIMIT 3
+    // WHERE pratique.login = "alexis.poirot@etu.imt-lille-douai.fr" 
+    // ORDER BY pratique.date ASC LIMIT 3
 
     session_start();
 
@@ -47,8 +47,7 @@
         
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date='".date('Y-m-d')."'";
-
+        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND pratique.date <='".date('Y-m-d H:i:s', strtotime("tomorrow"))."'";
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalSport=0;
