@@ -58,7 +58,16 @@
                 ],
                 rowId:'id_aliment',
                 scrollX: 200,
-                scrollY: 350
+                scrollY: 350,
+                language: {
+                    lengthMenu: "Afficher _MENU_ aliments",
+                    search: "Rechercher :",
+                    info: "Page _PAGE_ sur _PAGES_",
+                    paginate: {
+                        previous: "Précédent",
+                        next: "Suivant"
+                    }
+                }
             });
         }).fail(function(){
             console.log("REQ AJAX FAILED");
