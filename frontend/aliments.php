@@ -6,7 +6,7 @@
             <th>Nom</th>
             <th>Type</th>
             <th>Calories</th>
-            <th>Protéines (g/100g)</th>
+            <!-- <th>Protéines (g/100g)</th>
             <th>Glucides (g/100g)</th>
             <th>Lipides (g/100g)</th>
             <th>Glucose (g/100 g)</th>
@@ -15,82 +15,38 @@
             <th>Cholestérol (mg/100 g)</th>
             <th>Sel chlorure de sodium (g/100 g)</th>
             <th>Calcium (mg/100 g)</th>
-            <th>Sucres (g/100 g)</th>
+            <th>Sucres (g/100 g)</th> -->
         </tr>
     </thead>
-</table>
-<table id="tableForm">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Nom</th>
-            <th>Type</th>
-            <th>Calories</th>
-            <th>Protéines (g/100g)</th>
-            <th>Glucides (g/100g)</th>
-            <th>Lipides (g/100g)</th>
-            <th>Glucose (g/100 g)</th>
-            <th>Lactose (g/100 g)</th>
-            <th>Alcool (g/100 g)</th>
-            <th>Cholestérol (mg/100 g)</th>
-            <th>Sel chlorure de sodium (g/100 g)</th>
-            <th>Calcium (mg/100 g)</th>
-            <th>Sucres (g/100 g)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <form id="form">
-                <td>
-                   <button class="button" id="ADD">ADD</button>
-                   <button class="button" id="EDIT">EDIT</button>
-                   <button class="button" id="DELETE">DELETE</button>
-                </td>
-                <td>
-                    <input type="text" id="nom" name="nom">
-                </td>
-                <td>
-                    <input type="text" id="type" name="type">
-                </td>
-                <td>
-                    <input type="number" id="calories" name="calories">
-                </td>
-                <td>
-                    <input type="number" id="proteines" name="proteines">
-                </td>
-                <td>
-                    <input type="number" id="glucides" name="glucides">
-                </td>
-                <td>
-                    <input type="number" id="lipides" name="lipides">
-                </td>
-                <td>
-                    <input type="number" id="glucose" name="glucose">
-                </td>
-                <td>
-                    <input type="number" id="lactose" name="lactose">
-                </td>
-                <td>
-                    <input type="number" id="alcool" name="alcool">
-                </td>
-                <td>
-                    <input type="number" id="cholesterol" name="cholestrol">
-                </td>
-                <td>
-                    <input type="number" id="sel" name="sel">
-                </td>
-                <td>
-                    <input type="number" id="calcium" name="calcium">
-                </td>
-                <td>
-                    <input type="number" id="sucre" name="sucre">
-                </td>
-                
-            </form>
-        <tr>
-    <tbody>
 </table>
 
+<p class ="info">Cliquer sur un aliment pour le supprimer ou le modifier !</p>
+
+<div id="aliments-form">
+    <div class="box">
+        <form>
+            <ul>
+                <li class="aliments-form-item">
+                    <label>Nom :</label>
+                    <input type="text" id="nom" name="nom">
+                </li>
+                <li class="aliments-form-item">
+                    <label>Type :</label>
+                    <input type="text" id="type" name="type">
+                </li>
+                <li class="aliments-form-item">
+                    <label>Calories :</label>
+                    <input type="number" id="calories" name="calories">
+                </li>
+                <li id="aliments-form-buttons">
+                    <button class="button" id="add">Ajouter</button>
+                    <button class="button" id="edit">Modifier</button>
+                    <button class="button" id="delete">Supprimer</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
 
 <script>
     var ligneSelected=null;
@@ -110,19 +66,19 @@
                     {data:"nom"},
                     {data:"type"},
                     {data:"nb_calories"},
-                    {data:"Protéines (g/100g) "},
-                    {data:"Glucides (g/100g)"},
-                    {data:"Lipides (g/100g)"},
-                    {data:"Glucose (g/100 g)"},
-                    {data:"Lactose (g/100 g)"},
-                    {data:"Alcool (g/100 g)"},
-                    {data:"Cholestérol (mg/100 g)"},
-                    {data:"Sel chlorure de sodium (g/100 g)"},
-                    {data:"Calcium (mg/100 g)"},
-                    {data:"Sucres (g/ 100g)"}
+                    // {data:"Protéines (g/100g) "},
+                    // {data:"Glucides (g/100g)"},
+                    // {data:"Lipides (g/100g)"},
+                    // {data:"Glucose (g/100 g)"},
+                    // {data:"Lactose (g/100 g)"},
+                    // {data:"Alcool (g/100 g)"},
+                    // {data:"Cholestérol (mg/100 g)"},
+                    // {data:"Sel chlorure de sodium (g/100 g)"},
+                    // {data:"Calcium (mg/100 g)"},
+                    // {data:"Sucres (g/ 100g)"}
                 ],
                 rowId:'id_aliment',
-                scrollX: 200,
+                // scrollX: 200,
                 scrollY: 350,
                 language: {
                     lengthMenu: "Afficher _MENU_ aliments",
@@ -148,8 +104,8 @@
             selectionLigne(this.id);
         });
     });
-    // Si on appuie sur EDIT
-    $('#EDIT').on("click", function(){
+    // Si on appuie sur "Modifier"
+    $('#edit').on("click", function(){
         event.preventDefault();
 
         $.ajax({
@@ -157,7 +113,7 @@
             method: 'POST',
             dataType:'json',
             data:{
-                function:"ADD",
+                function:"add",
                 aliment:{
                     id:$('#id').val(),
                     nom:$('#nom').val(),
@@ -185,7 +141,7 @@
     })
 
     // Si on appuie sur add
-    $('#ADD').on("click", function(){
+    $('#add').on("click", function(){
         event.preventDefault();
         let newCol={
             nom:$('#nom').val(),
@@ -207,7 +163,7 @@
             method: 'POST',
             dataType:'json',
             data:{
-                function:"ADD",
+                function:"add",
                 aliment:{
                     nom:$('#nom').val(),
                     type:$('#type').val(),
