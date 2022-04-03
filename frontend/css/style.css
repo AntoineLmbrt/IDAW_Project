@@ -148,7 +148,7 @@ h6 {
     font-style: italic;
 }
 
-#dashboard, #profile, #aliments-form {
+#dashboard, #profile, #aliments-form, #sports-form {
     display: flex;
     justify-content: center;
 }
@@ -239,8 +239,17 @@ h6 {
 
 #journalRepas table tbody th,
 #journalSport table tbody th {
+    overflow: hidden;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
+}
+
+#journalRepas table tbody th input,
+#journalRepas table tbody th select,
+#journalSports table tbody th input,
+#journalSports table tbody th select {
+    margin: 0 5px;
+    max-width: 200px;
 }
 
 #journalRepas form,
@@ -264,47 +273,55 @@ h6 {
     background-color: var(--main-color);
 } 
 
-#aliments_wrapper {
+#aliments_wrapper, #sports_wrapper {
     width: 95%;
     margin: auto;
     font-size: 14px;
 }
 
-#aliments-form .box {
+#aliments-form .box,
+#sports-form .box {
     margin: 5px auto;
 }
 
-#aliments-form form {
+#aliments-form form,
+#sports-form form{
     padding: 10px;
     background-color: var(--light-grey-color);
     border-radius: 5px;
 }
 
-#aliments-form form ul li {
+#aliments-form form ul li,
+#sports-form form ul li {
     list-style: none;
 }
 
-#aliments-form form ul li label {
+#aliments-form form ul li label,
+#sports-form form ul li label {
     margin: 0 5px; 
 }
 
-#aliments-form .aliments-form-item {
+#aliments-form .aliments-form-item,
+#sports-form .sports-form-item  {
     display: inline-flex;
 }
 
-#aliments-form #aliments-form-buttons {
+#aliments-form #aliments-form-buttons,
+#sports-form #sports-form-buttons {
     margin: 10px 0 0 0;
     text-align: center;
 }
 
-#aliments-form #aliments-form-buttons button {
+#aliments-form #aliments-form-buttons button,
+#sports-form #sports-form-buttons button {
     margin: 0px 20px;
     padding: 3px;
     border-radius: 6px;
     background-color: var(--grey-color);
     cursor: pointer;
 }
-#aliments-form #aliments-form-buttons button:hover {
+#aliments-form #aliments-form-buttons button:hover,
+#sports-form #sports-form-buttons button:hover {
     background-color: var(--white-color);
 }
 
