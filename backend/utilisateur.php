@@ -21,7 +21,15 @@
         break;
         
         case "POST":
-            ajouterUser($conn);
+            switch($_POST['function']){
+                case 'ADD':
+                    ajouterUser($conn);
+                break;
+
+                case 'EDIT':
+                    modifierUser($conn);
+                break;
+            };
     }
 
 
@@ -76,7 +84,7 @@
     // Ajouter ou modifier un utilisateur
     function ajouterUser($conn){
         // On regarde si le login est unique.
-        $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['login']."'";
+        $sql = "SELECT login FROM utilisateur WHERE login='".$_POST['user']['login']."'";
         $res = $conn -> query($sql);
 
         // Si il retourne une ligne c'est qu'il n'est pas unique
@@ -91,14 +99,14 @@
             $response['Valide']='Inscription réussie';
 
             // On change l'id du sexe en fonction de notre table
-            $sql="SELECT id_sexe FROM sexe WHERE libelle = '".$_POST['sexe']."'";
+            $sql="SELECT id_sexe FROM sexe WHERE libelle = '".$_POST['user']['sexe']."'";
             $res = $conn->query($sql);
             $res=$res->fetch_assoc();
-            $_POST['sexe']=$res['id_sexe'];
+            $_POST['user']['sexe']=$res['id_sexe'];
 
             // Reset sql et création de la requete PUT
             $sql='';
-            foreach($_POST as $key => $value){
+            foreach($_POST['user'] as $key => $value){
                 if($key == 'sexe'){
                     $sql=$sql.$value.",";
                 }
@@ -114,16 +122,16 @@
 
             // On ditribue l'objectif selon le sexe et l'age (ici de manière brute)
             // Code compliqué a faire évoluer
-            if(age($_POST['date'])<11){
-                if($_POST['sexe']==2){
+            if(age($_POST['user']['date'])<11){
+                if($_POST['user']['sexe']==2){
                     $sql=$sql."2";
                 }
                 else{
                     $sql=$sql."1";
                 }
             }
-            elseif(age($_POST['date'])<19){
-                if($_POST['sexe']==2){
+            elseif(age($_POST['user']['date'])<19){
+                if($_POST['user']['sexe']==2){
                     $sql=$sql."4";
                 }
                 else{
@@ -131,7 +139,7 @@
                 }
             }
             else{
-                if($_POST['sexe']==2){
+                if($_POST['user']['sexe']==2){
                     $sql=$sql."6";
                 }
                 else{
@@ -147,14 +155,43 @@
 
             //On lance la session
             session_start();
-            $_SESSION["login"]=$_POST['login'];
-            $_SESSION["password"]=$_POST['password'];
+            $_SESSION["login"]=$_POST['user']['login'];
+            $_SESSION["password"]=$_POST['user']['password'];
             echo json_encode($response,0);
         }
 
 
     }
 
+    function modifierUser($conn){
+        $sql="SELECT id_sexe FROM sexe WHERE libelle = '".$_POST['user']['id_sexe']."'";
+        $res = $conn->query($sql);
+        $res=$res->fetch_assoc();
+        $_POST['user']['id_sexe']=$res['id_sexe'];
+
+        $sql='';
+        foreach($_POST['user'] as $key => $value){
+            if($key == 'id_sexe' ){
+                $sql=$sql.$key."=".$value;
+            }elseif($key == 'date'){
+                $timestamp = strtotime($value); 
+                $newDate = date("Y-m-d", $timestamp );
+                $sql=$sql.$key."='".$newDate."', ";
+                $sql=$sql."age =".age($value).", ";
+            }else{
+                $sql=$sql.$key."='".$value."', ";
+            }
+        }
+        $sql="UPDATE utilisateur SET ".$sql." WHERE login = ".$_SESSION['login'];
+        $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
+        if($conn->query($sql)==TRUE){;
+            $response='success sql';
+        }
+        else{
+            $response='failed sql';
+        }
+        echo json_encode($response);
+    }
 
     // FONCTION UTILES
     function age($date) { 

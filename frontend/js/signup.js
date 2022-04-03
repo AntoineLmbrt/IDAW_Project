@@ -35,12 +35,15 @@ function onFormSubmit() {
             method:'POST',
             dataType:"json",
             data:{
-                'login':$("#inputEmail").val(),
-                'password':$("#inputPassword").val(),
-                'nom': $("#inputNom").val(),
-                'prenom':$("#inputPrenom").val(),
-                'date':$("#inputDate").val(),
-                'sexe':$("#inputSexe").val(),
+                'function':'ADD',
+                'user':{
+                    'login':$("#inputEmail").val(),
+                    'password':$("#inputPassword").val(),
+                    'nom': $("#inputNom").val(),
+                    'prenom':$("#inputPrenom").val(),
+                    'date':$("#inputDate").val(),
+                    'sexe':$("#inputSexe").val(),
+                }
             }
         }).done(function(data){
             console.log("REQUETE AJAX SUCCED");
