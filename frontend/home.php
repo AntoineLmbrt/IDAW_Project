@@ -28,7 +28,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="table-date"><input type="date" id="inputRepasDate" name="date"></th>
+                                <th class="table-date"><input type="datetime-local" id="inputRepasDate" name="date"></th>
                                 <th class="table-item-name"><select id="inputRepasName" name="nom"></select></th>
                                 <th class="table-quantity"><input type="text" id="inputRepasQuantity" name="quantite"></th>
                                 <th class="table-calories"></th>
