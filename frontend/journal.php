@@ -1,1 +1,22 @@
-<!-- TODO -->
+<h1 id="title">Journal</h1>
+<div id="journalAdd">
+    <div class="box">
+        
+    </div>
+</div>
+<div id="journal">
+    <button onclick="displayRepas()">Repas</button>
+    <button onclick="displaySport()">Sport</button>
+    <table>
+        <thead>
+            <tr>
+                <th id="column1">Date</th>
+                <th id="column2">Aliment</th>
+                <th id="column3">Quantité</th>
+                <th id="column4">Calories</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script src="js/journal.js">
