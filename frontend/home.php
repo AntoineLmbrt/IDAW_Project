@@ -29,7 +29,7 @@
                         <tbody>
                             <tr>
                                 <th><input type="date" id="dateRepas" name="date"></th>
-                                <th><input type="text" id="nomRepas" name="nom"></th>
+                                <th><select id="nomRepas" name="nom"></select></th>
                                 <th><input type="text" id="qteRepas" name="quantite"></th>
                                 <th></th>
                             </tr>
@@ -56,7 +56,7 @@
                             <tr>
                                 <form id='pratiqueForm'>
                                     <th><input type="date" id="dateSeance" name="date"></th>
-                                    <th><input type="text" id="nomSport" name="nom"></th>
+                                    <th><select id="nomSport" name="nom"></select></th>
                                     <th><input type="text" id="dureeSeance" name="quantite"></th>
                                     <th></th>
                                 </form>
@@ -236,11 +236,49 @@
             console.log("REQ AJAX FAILED");
         })
 
-
+        chargementRepas();
+        chargementSport();
         //Journal Repas
         journalRepas();
         //Journal Sport
         journalSport();
+    }
+
+    function chargementRepas(){
+        
+        $.ajax({
+            url:"../backend/aliments.php",
+            method: "GET",
+            dataType: "json",
+        })
+        .done(function(data){
+                for(let i in data['data']){
+                    $("#nomRepas").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
+                }
+            
+        })
+        .fail(function(){
+            console.log('REQ AJAX FAILED ...');
+        })
+    }
+
+    
+    function chargementSport(){
+        
+        $.ajax({
+            url:"../backend/sports.php",
+            method: "GET",
+            dataType: "json",
+        })
+        .done(function(data){
+                for(let i in data['data']){
+                    $("#nomSport").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
+                }
+            
+        })
+        .fail(function(){
+            console.log('REQ AJAX FAILED ...');
+        })
     }
 
 

@@ -6,7 +6,7 @@
 
     switch($_SERVER['REQUEST_METHOD']){
         case 'GET':
-            listeAliments($conn);
+            listeSports($conn);
         break;
 
         case 'POST':
@@ -14,25 +14,25 @@
             if(isset($_POST['function'])){
                 switch($_POST['function']){
                     case 'EDIT':
-                        modifierAliment($conn);
+                        modifierSports($conn);
                     break;
 
                     case 'ADD':
-                        ajouterAliment($conn);
+                        ajouterSports($conn);
                     break;
                 }
             }
         break;
         
         case 'DELETE':
-            supprAliment($conn);
+            supprSport($conn);
         break;
 
     }
 
     //Obtenir la liste des aliments et leurs nutriments !
-    function listeAliments($conn){
-        $sql = "SELECT * FROM aliment";
+    function listeSports($conn){
+        $sql = "SELECT * FROM sport";
         $result = $conn->query($sql);
 
         // $nb_nutriment=$conn->query("SELECT COUNT(*) FROM nutriment");
@@ -57,7 +57,7 @@
         $response["draw"]= 1;
 
         // On recherche le nombre d'entrée (utile pour dataTables)
-        $row=$conn -> query("SELECT COUNT(*) FROM aliment");
+        $row=$conn -> query("SELECT COUNT(*) FROM sport");
         $row=$row->fetch_assoc();
         $response["recordsTotal"]= $row['COUNT(*)'];
         $response["recordsFiltered"]= $row['COUNT(*)'];

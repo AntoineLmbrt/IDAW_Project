@@ -43,9 +43,9 @@
             
         })
         .fail(function(){
-            console.log('REQ AJAX FAILED ...');
+       
+    };     console.log('REQ AJAX FAILED ...');
         })
-    };
     // Création du nouveau compte
     function onFormSubmit(){
         champsObligatoires = ["#inputNom", "#inputPrenom", "inputEmail", "inputPassword", "inputDate", "inputSexe"];
