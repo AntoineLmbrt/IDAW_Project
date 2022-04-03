@@ -1,0 +1,50 @@
+#signup-form ul,
+#login-form ul {
+    margin: auto;
+	max-width: 400px;
+	padding: 20px 12px 10px 20px;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    border-radius: 5px;
+}
+
+#signup-form ul li,
+#login-form ul li {
+    padding: 1px;
+	display: block;
+	list-style: none;
+	margin: 10px 0 0 0;
+}
+
+#signup-form label,
+#login-form label {
+    margin: 0 0 3px 0;
+	padding: 0px;
+	display: block;
+}
+
+#signup-form ul input[type=submit],
+#login-form ul input[type=submit] {
+	background-color: var(--secondary-color);
+    margin: 10px auto;
+	padding: 8px 15px 8px 15px;
+	border: none;
+    border-radius: 5px;
+    text-align: center;
+	color: var(--white-color);
+    cursor: pointer;
+}
+
+#signup-form ul input[type=submit]:hover,
+#login-form ul input[type=submit]:hover {
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+}
+
+#inputLogin, #inputPassword, #inputNom, #inputPrenom, #inputEmail, #inputDate, #inputSexe{
+    border: 1px solid var(--secondary-color);
+}
+
+.form-link h6 {
+    margin: 10px auto;
+}

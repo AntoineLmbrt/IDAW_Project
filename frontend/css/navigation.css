@@ -1,0 +1,102 @@
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--menu-width);
+    background-color: var(--main-color);
+    padding: 6px 14px;
+}
+
+.menu .logo {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    color: var(--white-color);
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.logo .logo_name {
+    margin: 8px 0 0 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.menu ul {
+    margin-top: 20px;
+}
+
+.menu ul li {
+    position: inherit;
+    height: 50px;
+    width: 100%;
+    margin: 5px;
+    line-height: 50px;
+    list-style-type: none;
+}
+
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 12px;
+    color: var(--white-color);
+    transition: all 0.4s ease;
+}
+
+.menu ul li a i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.menu ul li a:hover {
+    color: var(--main-color);
+    background-color: var(--white-color);
+}
+#currentpage {
+    color: var(--main-color);
+    background-color: var(--white-color);
+}
+
+.menu .profile {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--white-color);
+}
+
+.menu .profile .details {
+    position: relative;
+    padding: 10px 6px;
+    height: 75px;
+    text-align: center;
+    background-color: var(--secondary-color);
+}
+
+.profile .details .name {
+    font-size: 15px;
+}
+
+.profile .details .btn {
+    width: 60%;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 10px auto;
+    padding: 3px;
+    background-color: var(--main-color);
+    color: var(--white-color);
+    cursor: pointer;
+}
+.profile .details .btn:hover {
+    background-color: var(--danger-color);
+    color: var(--white-color);
+}

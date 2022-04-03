@@ -1,0 +1,112 @@
+#dashboard-first-column {
+    margin: 0 10px;
+    width: 300px;
+}
+
+#dashboard-second-column {
+    margin: 0 10px;
+    width: 800px;
+}
+
+.dashboard-title {
+    margin: auto;
+    padding: 10px;
+    background-color: var(--main-color);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: var(--white-color);
+}
+
+.graph {
+    width: 300px;
+    margin: 0 0 20px 0;
+}
+
+.meter {
+    font-size: 20px;
+}
+
+.journal {
+    height: 280px;
+    margin: 0 0 20px 0;
+}
+
+#journalRepas table,
+#journalSport table {
+    height: auto;
+    width: 700px;
+    margin: 10px auto;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas table thead,
+#journalSport table thead {
+    background-color: var(--light-grey-color);
+}
+
+#journalRepas table tbody tr,
+#journalSport table tbody tr {
+    height: 50px;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas table tbody th,
+#journalSport table tbody th {
+    overflow: hidden;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journalRepas table tbody th input,
+#journalRepas table tbody th select,
+#journalSports table tbody th input,
+#journalSports table tbody th select {
+    margin: 0 5px;
+    max-width: 200px;
+}
+
+#journalRepas form,
+#journalSport form {
+    text-align: center;
+}
+
+#journalRepas form .btn,
+#journalSport form .btn {
+    width: 50%;
+    padding: 3px;
+    border-radius: 6px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+}
+
+#journalRepas form .btn:hover,
+#journalSport form .btn:hover {
+    background-color: var(--main-color);
+}
+
+.buttons {
+    height: 160px;
+}
+
+.buttons .btn {
+    width: 75%;
+    margin: 6px auto;
+    padding: 3px;
+    border-radius: 6px;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    text-align: center;
+    cursor: pointer;
+}
+
+.buttons .btn:hover {
+    background-color: var(--main-color);
+}
+
+.buttons a {
+    text-decoration: none;
+}
