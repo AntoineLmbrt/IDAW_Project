@@ -20,18 +20,18 @@
                     <table id="repas">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Aliment</th>
-                                <th>Quantité</th>
-                                <th>Calories</th>
+                                <th class="table-date">Date</th>
+                                <th class="table-item-name">Aliment</th>
+                                <th class="table-duration">Quantité</th>
+                                <th class="table-calories">Calories</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th><input type="date" id="dateRepas" name="date"></th>
-                                <th><select id="nomRepas" name="nom"></select></th>
-                                <th><input type="text" id="qteRepas" name="quantite"></th>
-                                <th></th>
+                                <th class="table-date"><input type="date" id="inputRepasDate" name="date"></th>
+                                <th class="table-item-name"><select id="inputRepasName" name="nom"></select></th>
+                                <th class="table-quantity"><input type="text" id="inputRepasQuantity" name="quantite"></th>
+                                <th class="table-calories"></th>
                             </tr>
                         </tbody>
                     </table>
@@ -46,18 +46,18 @@
                     <table id="pratique">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Sport</th>
-                                <th>Durée (en min)</th>
-                                <th>Calories</th>
+                                <th class="table-date">Date</th>
+                                <th class="table-item-name">Sport</th>
+                                <th class="table-duration">Durée (en min)</th>
+                                <th class="table-calories">Calories</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th><input type="date" id="dateSeance" name="date"></th>
-                                <th><select id="nomSport" name="nom"></select></th>
-                                <th><input type="text" id="dureeSeance" name="quantite"></th>
-                                <th></th>
+                                <th class="table-date"><input type="date" id="inputSeanceDate" name="date"></th>
+                                <th class="table-item-name"><select id="inputSportName" name="nom"></select></th>
+                                <th class="table-duration"><input type="text" id="inputSeanceDuration" name="quantite"></th>
+                                <th class="table-calories"></th>
                             </tr>
                         </tbody>
                     </table>

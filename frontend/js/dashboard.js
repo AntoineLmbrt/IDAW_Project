@@ -1,4 +1,3 @@
-
 // CREATION DU GRAPHE
 
 var nbCalorie = 0;
@@ -80,22 +79,22 @@ let progress = start;
 // AJOUTER UNE SEANCE DE SPORT
 $('#ajoutPratique').on('click', function(){
     event.preventDefault();
-    if($('#dateSeance').val() && $('#nomSport').val() && $('#dureeSeance').val()){
+    if($('#inputSeanceDate').val() && $('#inputSportName').val() && $('#inputSeanceDuration').val()){
         $.ajax({
             url:'../backend/pratique.php',
             method: 'POST',
             dataType:'json',
             data:{
-                nom:$('#nomSport').val(),
-                date:$('#dateSeance').val(),
-                temps:$('#dureeSeance').val(),
+                nom:$('#inputSportName').val(),
+                date:$('#inputSeanceDate').val(),
+                temps:$('#inputSeanceDuration').val(),
             }
         }).done(function(data){
             console.log(data);
         }).fail(function(){
             console.log('FAILED');
         })
-    }else{
+    } else {
             console.log('Manque des champs')
     }
 })
@@ -103,15 +102,15 @@ $('#ajoutPratique').on('click', function(){
 // AJOUTER UN REPAS
 $('#ajoutRepas').on('click', function(){
     event.preventDefault();
-    if($('#dateRepas').val() && $('#nomRepas').val() && $('#qteRepas').val()){
+    if($('#inputRepasDate').val() && $('#inputRepasName').val() && $('#inputRepasQuantity').val()){
         $.ajax({
             url:'../backend/repas.php',
             method: 'POST',
             dataType:'json',
             data:{
-                nom:$('#nomRepas').val(),
-                quantite:$('#qteRepas').val(),
-                date:$('#dateRepas').val(),
+                nom:$('#inputRepasName').val(),
+                quantite:$('#inputRepasQuantity').val(),
+                date:$('#inputRepasDate').val(),
             }
         }).done(function(data){
             console.log(data);
@@ -134,7 +133,7 @@ function chargementDonnees(){
         console.log("REQ AJAX SUCCED");
         nbCalorie+=parseInt(data);
         objectif=parseInt(data);
-        // On récupère les calorie mangé
+        // On récupère les calories mangées
         $.ajax({
             url:'../backend/repas.php?time=day',
             dataType:'json',
@@ -142,7 +141,7 @@ function chargementDonnees(){
         }).done(function(data){
             console.log('REQ AJAX SUCCED');
             nbCalorie-=parseInt(data);
-            // On récupère les calories dépensé
+            // On récupère les calories dépensées
             $.ajax({
                 url:'../backend/pratique.php?time=day',
                 dataType:'json',
@@ -167,8 +166,8 @@ function chargementDonnees(){
 
     chargementRepas();
     chargementSport();
-    journalRepas();
-    journalSport();
+    journalRepasDashboard();
+    journalSportDashboard();
 }
 
 function chargementRepas(){
@@ -180,7 +179,7 @@ function chargementRepas(){
     })
     .done(function(data){
             for(let i in data['data']){
-                $("#nomRepas").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
+                $("#inputRepasName").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
             }
         
     })
@@ -198,7 +197,7 @@ function chargementSport(){
     })
     .done(function(data){
             for(let i in data['data']){
-                $("#nomSport").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
+                $("#inputSportName").append(`<option value="${data["data"][i]['nom']}"> ${data["data"][i]['nom']} </option>`);
             }
         
     })
@@ -207,7 +206,7 @@ function chargementSport(){
     })
 }
 
-function journalRepas(){
+function journalRepasDashboard(){
     $.ajax({
         url:'../backend/repas.php?time=3days',
         dataType:'json',
@@ -215,7 +214,7 @@ function journalRepas(){
         console.log('REQ AJAX SUCCED');
         console.log(data);
         for(let i in data){
-            $('#repas tbody' ).append(`<tr><th>${data[i]['date']}</th><th>${data[i]['nom']}</th><th>${data[i]['quantite']}</th><th>${data[i]['aliment.nb_calories*repas.quantite']}</th></tr>`);
+            $('#repas tbody' ).append(`<tr><th class="table-date">${data[i]['date']}</th><th class="table-item-name">${data[i]['nom']}</th><th class="table-duration">${data[i]['quantite']}</th><th class="table-calories">${data[i]['aliment.nb_calories*repas.quantite']}</th></tr>`);
         }
         
     }).fail(function(){
@@ -223,7 +222,7 @@ function journalRepas(){
     })
 }
 
-function journalSport(){
+function journalSportDashboard(){
     $.ajax({
         url:'../backend/pratique.php?time=3days',
         dataType:'json',
@@ -231,7 +230,7 @@ function journalSport(){
         console.log('REQ AJAX SUCCED');
         console.log(data);
         for(let i in data){
-            $('#pratique tbody' ).append(`<tr><th>${data[i]['date']}</th><th>${data[i]['nom']}</th><th>${data[i]['temps']} min</th><th>${data[i]['sport.nb_calories*pratique.temps/60']}</th></tr>`);
+            $('#pratique tbody' ).append(`<tr><th class="table-date">${data[i]['date']}</th><th class="table-item-name">${data[i]['nom']}</th><th class="table-duration">${data[i]['temps']} min</th><th class="table-calories">${data[i]['sport.nb_calories*pratique.temps/60']}</th></tr>`);
         }
     }).fail(function(){
         console.log('REQ AJAX FAILED')
