@@ -28,6 +28,10 @@
                     case 'month':
                         Repas_Calorie_month($conn);
                     break;
+
+                    case 'all':
+                        repasJournal($conn);
+                    break;
                 }
             }
         break;
@@ -88,6 +92,23 @@
         echo $nbCalRepas;
     }
 
+    function repasJournal($conn){
+        $sql="SELECT repas.date,aliment.nom, repas.quantite, aliment.nb_calories*repas.quantite FROM repas 
+        LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
+        WHERE repas.login = '".$_SESSION['login']."'";
+
+        $res=$conn -> query($sql);
+        $rows = array();
+        while($row = $res->fetch_assoc()) {
+            foreach($row as $key=>$value){
+                $result = mb_convert_encoding($value,'UTF-8', 'CP1252');
+                $row[$key]=$result;
+            }
+            array_push($rows, $row);
+        }
+        echo json_encode($rows);
+
+    }
 
     function Repas_jour($conn){
         $sql="SELECT aliment.nom, repas.quantite, aliment.nb_calories*repas.quantite, repas.date FROM repas 

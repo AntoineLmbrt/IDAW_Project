@@ -28,6 +28,10 @@
                     case 'month':
                         Sport_Calorie_month($conn);
                     break;
+
+                    case 'all':
+                        pratiqueJournal($conn);
+                    break;
                 }
             }
         break;
@@ -109,6 +113,26 @@
         echo json_encode($rows);
         
     }
+
+    function pratiqueJournal($conn){
+        $sql="SELECT pratique.date, sport.nom, pratique.temps, sport.nb_calories*pratique.temps/60 FROM pratique
+        LEFT JOIN sport ON sport.id_sport=pratique.id_sport
+        WHERE pratique.login = '".$_GET['login']."'";
+
+        $res=$conn -> query($sql);
+        $rows = array();
+        while($row = $res->fetch_assoc()) {
+            foreach($row as $key=>$value){
+                $result = mb_convert_encoding($value,'UTF-8', 'CP1252');
+                $row[$key]=$result;
+            }
+            array_push($rows, $row);
+        }
+        echo json_encode($rows);
+
+    }
+
+
     //ajouter une Pratique
     function ajoutPratique($conn){
 
