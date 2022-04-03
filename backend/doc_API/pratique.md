@@ -24,12 +24,17 @@ GET :
         description : renvois tout les pratiques enregistrées par l'utilisateur
         format réponse : json
 
-POST :
-    url : /pratique.php
-    description : Ajoute un pratique dans la table sql
+POST :  
+        url : /pratique.php
+        description : Ajoute un pratique dans la table sql
+        format réponse : json
+        payload : {
+            nom :
+            date :
+            temps :
+        }
+
+DELETE : 
+    url : /pratique.php?nom=[nom du sport]&date=[date de la pratique]
+    description : Supprime la pratique cible
     format réponse : json
-    payload : {
-        nom :
-        date :
-        temps :
-    }

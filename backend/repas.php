@@ -36,16 +36,13 @@
             }
         break;
         case 'POST':
-            switch($_POST['function']){
-                case 'ADD':
-                    ajoutRepas($conn);
-                break;
-
+                ajoutRepas($conn);
         break;
+
         case 'DELETE':
             supprRepas($conn);
         break;
-        }
+        
     }
     
 
@@ -55,7 +52,6 @@
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
         WHERE repas.login = '".$_SESSION['login']."'  AND repas.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND repas.date <='".date('Y-m-d', strtotime("today"))." 23:59:59'";
-        echo $sql;
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalRepas=0;
@@ -174,7 +170,8 @@
         $res=$conn->query($sql);
         $res=$res->fetch_assoc();
 
-        $sql='DELETE FROM repas WHERE id_aliment="'.$res['id_aliment'].'" AND login="'.$_GET['login'].'" AND date="'.$_GET['date'];
+        $sql='DELETE FROM repas WHERE id_aliment='.$res['id_aliment'].' AND login="'.$_GET['login'].'" AND date="'.$_GET['date'].'"';
+        echo $sql;
         if($conn -> query($sql)==TRUE){
             $response = "success";
         }

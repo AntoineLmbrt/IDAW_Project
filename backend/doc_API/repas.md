@@ -33,3 +33,8 @@ POST :
         quantite :
         date :
     }
+
+DELETE : 
+    url : /pratique.php?nom=[nom de l'aliment]&date=[date du repas]
+    description : Supprime le repas cible
+    format réponse : json

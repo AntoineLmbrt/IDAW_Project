@@ -37,15 +37,7 @@
         break;
 
         case 'POST':
-            switch($_POST['function']){
-                case 'ADD' :
-                    ajoutPratique($conn);
-                break;
-                
-                case 'EDIT' :
-                    modifierPratique($conn);
-                break;
-            }
+            ajoutPratique($conn); 
         break;
 
         case 'DELETE':
@@ -176,6 +168,20 @@
         echo json_encode($response,0);
     }
 
-    function supprPratique(){}
+    function supprPratique($conn){
+        $sql='SELECT id_sport FROM sport WHERE nom ="'.mb_convert_encoding($_GET['nom'], 'CP1252', 'UTF-8').'"';
+        $res=$conn->query($sql);
+        $res=$res->fetch_assoc();
+    
+        $sql='DELETE FROM pratique WHERE id_sport='.$res['id_sport'].' AND login="'.$_GET['login'].'" AND date="'.$_GET['date'].'"';
+        
+        if($conn -> query($sql)==TRUE){
+            $response = "success";
+        }
+        else{
+            $response = "failed";
+        }
+        echo json_encode($response,0);
+    }
 
 ?>
