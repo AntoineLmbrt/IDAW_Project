@@ -1,13 +1,7 @@
 <?php
-    $auth = file_get_contents("identification.json");
-    $auth = json_decode($auth,true);
-    $auth['dataBase']["username"]; 
-    $conn = new mysqli($auth['dataBase']["servername"],$auth['dataBase']["username"], $auth['dataBase']["password"], $auth['dataBase']["dbname"]);
-    
-    //On vérifie la connection
-    if($conn->connect_error){
-        die('Erreur : ' .$conn->connect_error);
-    }
+
+    require('config.php');
+
     // On cherche ce que demande le front
     switch($_SERVER["REQUEST_METHOD"]) {
         case "GET":
