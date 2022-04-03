@@ -55,6 +55,7 @@
         $row = $res->fetch_assoc();
         echo json_encode($row['nb_calories']);
     }
+    
     // Obtenir le profil de l'utilisateur
     function profil($conn){
         session_start();

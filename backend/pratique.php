@@ -137,7 +137,7 @@
     function ajoutPratique($conn){
 
         //On cherche l'id du sport
-        $sql="SELECT id_sport FROM sport WHERE nom ='".$_POST['nom']."'";
+        $sql="SELECT id_sport FROM sport WHERE nom ='".mb_convert_encoding($_POST['nom'], 'CP1252', 'UTF-8')."'";
         $res = $conn -> query($sql);
         $res2 = $res->fetch_assoc();
         $_POST['nom']=$res2['id_sport'];
