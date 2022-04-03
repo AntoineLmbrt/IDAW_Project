@@ -39,18 +39,4 @@
         ');
     }
 ?>
-<script>
-    $('document').ready(chargementProfil());
-
-    function chargementProfil(){
-        $.ajax({
-            url:'../backend/utilisateur.php?function=profil',
-            dataType:'json',
-
-        }).done(function(donnée){
-            $('.name').append(`${donnée["prenom"]} ${donnée['nom']}`);
-        }).fail(function(){
-
-        })
-    }
-</script>
+<script src="js/navigation.js"></script>
