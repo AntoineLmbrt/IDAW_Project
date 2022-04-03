@@ -66,16 +66,6 @@
                     {data:"nom"},
                     {data:"type"},
                     {data:"nb_calories"},
-                    // {data:"Protéines (g/100g) "},
-                    // {data:"Glucides (g/100g)"},
-                    // {data:"Lipides (g/100g)"},
-                    // {data:"Glucose (g/100 g)"},
-                    // {data:"Lactose (g/100 g)"},
-                    // {data:"Alcool (g/100 g)"},
-                    // {data:"Cholestérol (mg/100 g)"},
-                    // {data:"Sel chlorure de sodium (g/100 g)"},
-                    // {data:"Calcium (mg/100 g)"},
-                    // {data:"Sucres (g/ 100g)"}
                 ],
                 rowId:'id_aliment',
                 // scrollX: 200,
@@ -104,40 +94,39 @@
             selectionLigne(this.id);
         });
     });
+
     // Si on appuie sur "Modifier"
     $('#edit').on("click", function(){
         event.preventDefault();
-
-        $.ajax({
-            url:'../backend/aliments.php',
-            method: 'POST',
-            dataType:'json',
-            data:{
-                function:"add",
-                aliment:{
-                    id:$('#id').val(),
-                    nom:$('#nom').val(),
-                    type:$('#type').val(),
-                    nb_calories:$('#calories').val(),
-                },
-                nutriments:{
-                    "1": $('#proteines').val(),
-                    "2": $('#glucides').val(),
-                    "3": $('#lipides').val(),
-                    "4": $('#sucre').val(),
-                    "5": $('#glucose').val(),
-                    "6": $('#lactose').val(),
-                    "7": $('#alcool').val(),
-                    "8": $('#cholesterol').val(),
-                    "9": $('#sel').val(),
-                    "10":$('#calcium').val(),
+        if(ligneSelected!=null){
+            newCol={
+                id_aliment: ligneSelected,
+                nom:$('#nom').val(),
+                type:$('#type').val(),
+                nb_calories:$('#calories').val(),}
+            $.ajax({
+                url:'../backend/aliments.php',
+                method: 'POST',
+                dataType:'json',
+                data:{
+                    function:"EDIT",
+                    aliment:{
+                        id:ligneSelected,
+                        nom:$('#nom').val(),
+                        type:$('#type').val(),
+                        nb_calories:$('#calories').val(),
+                    },
                 }
-            }
-        }).done(function(data){
-            console.log(data);
-        }).fail(function(){
-            console.log("REQ AJAX FAILED");
-        })
+            }).done(function(data){
+                console.log(data);
+                table.row("#"+ligneSelected).data(
+                    newCol
+                );
+                table.draw();
+            }).fail(function(){
+                console.log("REQ AJAX FAILED");
+            })
+        }
     })
 
     // Si on appuie sur add
@@ -147,48 +136,22 @@
             nom:$('#nom').val(),
             type:$('#type').val(),
             nb_calories:$('#calories').val(),
-            "Protéines (g/100g) ":$('#proteines').val(),
-            "Glucides (g/100g)":$('#glucides').val(),
-            "Lipides (g/100g)":$('#lipides').val(),
-            "Glucose (g/100 g)":$('#glucose').val(),
-            "Lactose (g/100 g)":$('#lactose').val(),
-            "Alcool (g/100 g)":$('#alcool').val(),
-            "Cholestérol (mg/100 g)":$('#cholesterol').val(),
-            "Sel chlorure de sodium (g/100 g)":$('#sel').val(),
-            "Calcium (mg/100 g)":$('#calcium').val(),
-            "Sucres (g/ 100g)":$('#sucre').val()
         }
         $.ajax({
             url:'../backend/aliments.php',
             method: 'POST',
             dataType:'json',
             data:{
-                function:"add",
+                function:"ADD",
                 aliment:{
                     nom:$('#nom').val(),
                     type:$('#type').val(),
                     nb_calories:$('#calories').val(),
                 },
-                nutriments:{
-                    "1": $('#proteines').val(),
-                    "2": $('#glucides').val(),
-                    "3": $('#lipides').val(),
-                    "4": $('#sucre').val(),
-                    "5": $('#glucose').val(),
-                    "6": $('#lactose').val(),
-                    "7": $('#alcool').val(),
-                    "8": $('#cholesterol').val(),
-                    "9": $('#sel').val(),
-                    "10":$('#calcium').val(),
-                }
             }
         }).done(function(data){
             if(data['resultat']=='success'){
-                id={
-                    'id_aliment':data['id']
-                }
                 newCol['id_aliment']=""+data['id']+"";
-                console.log(newCol);
                 table.row.add(newCol);
                 table.draw();
             }else{
@@ -198,10 +161,32 @@
             console.log("REQ AJAX FAILED");
         })
     })
+    // On supprime une ligne
+    $('#delete').on("click", function(){
+        event.preventDefault();
+        if(ligneSelected!=null){
+            let id=ligneSelected
+            $.ajax({
+                url:'../backend/aliments.php?id_aliment='+id,
+                method: 'DELETE',
+                dataType:'json',
+            }).done(function(data){
+                if(data['resultat']=='success'){
+                    table.row("#"+id).remove();
+                    table.draw();
+
+                }else{
+                    console.log("SQL FAILED");
+                }
+            }).fail(function(){
+                console.log("REQ AJAX FAILED");
+            })
+        }
+    })
 
     // A chaque changment de page, on réabonne toutes les lignes. Et on rentre la selection dans le form
     function selectionLigne(idLigne){
-        let lignes=['id','nom','type','calories','proteines','glucides','lipides','glucose','lactose','alcool','cholesterol','sel','calcium','sucre']; 
+        let lignes=['id','nom','type','calories']; 
         $('#'+ligneSelected).removeClass("selected");
         $('#'+idLigne).addClass("selected");
         ligneSelected=idLigne;

@@ -13,8 +13,8 @@
             
             if(isset($_POST['function'])){
                 switch($_POST['function']){
-                    case 'UPDATE':
-                        changerAliment($conn);
+                    case 'EDIT':
+                        modifierAliment($conn);
                     break;
 
                     case 'ADD':
@@ -22,6 +22,12 @@
                     break;
                 }
             }
+        break;
+        
+        case 'DELETE':
+            supprAliment($conn);
+        break;
+
     }
 
     //Obtenir la liste des aliments et leurs nutriments !
@@ -61,17 +67,23 @@
     }
 
     function modifierAliment($conn){
-        foreach($_POST as $key => $value){
+        $sql='';
+        foreach($_POST['aliment'] as $key => $value){
             if($key == 'nb_calories'){
                 $sql=$sql.$key."=".$value;
-            }elseif($key == 'id_aliment'){
+            }elseif($key == 'id'){
             }else{
                 $sql=$sql.$key."='".$value."',";
             }
         }
-        $sql="UPDATE aliment SET ".$sql."WHERE aliment.id = ".$_POST['id_aliment'];
-        $conn->query($sql);
-        $response='success';
+        $sql="UPDATE aliment SET ".$sql." WHERE id_aliment = ".$_POST['aliment']['id'];
+        $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
+        if($conn->query($sql)==TRUE){;
+            $response='success sql';
+        }
+        else{
+            $response='failed sql';
+        }
         echo json_encode($response);
     }
 
@@ -84,18 +96,26 @@
                 $sql=$sql.",'".$value."'";
             }
         }
+        
         $sql="INSERT INTO aliment VALUES(NULL".$sql.")";
         $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
         if($conn->query($sql) === TRUE){
             $id_aliment=$conn->insert_id;
+            $response['resultat']="success";
         };
-        $response['resultat']="success";
-        foreach($_POST['nutriments'] as $key => $value){
-            if($conn->query("INSERT INTO contient VALUES(".$id_aliment.",".$key.",".$value.")")==FALSE){
-                $response['resultat']="failed";
-            }
-        }
+        
+
         $response['id']=$id_aliment;
+        echo json_encode($response);
+    }
+
+    function supprAliment($conn){
+        $sql="DELETE FROM aliment WHERE id_aliment=".$_GET['id_aliment'];
+        if($conn->query($sql)==TRUE){
+            $response['resultat']='success';
+        }else{
+            $response['resultat']='failed';
+        }
         echo json_encode($response);
     }
 ?>
