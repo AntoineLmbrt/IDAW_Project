@@ -54,7 +54,8 @@
         
         $sql="SELECT aliment.nb_calories*repas.quantite FROM repas 
         LEFT JOIN aliment ON aliment.id_aliment=repas.id_aliment 
-        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND repas.date <='".date('Y-m-d H:i:s', strtotime("tomorrow"))."'";
+        WHERE repas.login = '".$_SESSION['login']."'  AND repas.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND repas.date <='".date('Y-m-d', strtotime("today"))." 23:59:59'";
+        echo $sql;
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalRepas=0;

@@ -59,7 +59,7 @@
         
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND pratique.date <='".date('Y-m-d H:i:s', strtotime("tomorrow"))."'";
+        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND pratique.date <='".date('Y-m-d', strtotime("today"))." 23:59:59'";
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalSport=0;
