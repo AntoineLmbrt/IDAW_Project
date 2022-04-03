@@ -12,7 +12,7 @@ body {
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: #F6FFFE;
+    background-color: #F2F2F2;
 }
 
 .menu {
@@ -135,7 +135,7 @@ h6 {
 }
 
 .box {
-    background-color: #FFFFFF;
+    background-color: #F6FFFE;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #A4A4A4;
 }
@@ -148,7 +148,7 @@ h6 {
 .content #title {
     text-align: center;
     font-weight: 900;
-    margin: 10px;
+    margin: 30px;
     color: #18A585;
 }
 
