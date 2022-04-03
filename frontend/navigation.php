@@ -1,10 +1,10 @@
 <?php
     function renderMenuToHTML($currentPageId) {
         $myMenu = array(
-            'home' => array('Home'),
-            'profil' => array('Profil'),
-            'journal' => array('Journal'),
-            'aliments' => array('Aliments')
+            'home' => array('name' => 'Home', 'icon' => '<i class="fa-solid fa-chart-line"></i>'),
+            'profil' => array('name' => 'Profil', 'icon' => '<i class="fa-solid fa-user"></i>'),
+            'journal' => array('name' => 'Journal', 'icon' => '<i class="fa-solid fa-newspaper"></i>'),
+            'aliments' => array('name' => 'Aliments', 'icon' => '<i class="fa-solid fa-carrot"></i>')
         );
         
         echo('
@@ -19,10 +19,10 @@
 
         foreach($myMenu as $pageId => $pageParameters) {
             if ($pageId === $currentPageId) {
-                echo('<li><a id="currentpage" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a></li>');
+                echo('<li><a id="currentpage" href="index.php?page='.$pageId.'">'.$pageParameters['icon'].'<span>'.$pageParameters['name'].'</span></a></li>');
             }
             else {
-                echo('<li><a href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a></li>');
+                echo('<li><a href="index.php?page='.$pageId.'">'.$pageParameters['icon'].'<span>'.$pageParameters['name'].'</span></a></li>');
             }
         }
 

@@ -12,10 +12,11 @@
         <link rel="stylesheet" href="css/style.css">
 
         <!-- JS files -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v7.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/c58dae0d84.js" crossorigin="anonymous"></script>
 
     </head>
     <body>
