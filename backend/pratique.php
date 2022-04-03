@@ -4,8 +4,8 @@
 
     // SELECT sport.nom, sport.nb_calories*pratique.temps FROM pratique 
     // LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-    // WHERE repas.login = "alexis.poirot@etu.imt-lille-douai.fr" 
-    // ORDER BY repas.date ASC LIMIT 3
+    // WHERE pratique.login = "alexis.poirot@etu.imt-lille-douai.fr" 
+    // ORDER BY pratique.date ASC LIMIT 3
 
     session_start();
 
@@ -47,8 +47,7 @@
         
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport 
-        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date='".date('Y-m-d')."'";
-
+        WHERE pratique.login = '".$_SESSION['login']."'  AND pratique.date >='".date('Y-m-d H:i:s', strtotime("today"))."' AND pratique.date <='".date('Y-m-d H:i:s', strtotime("tomorrow"))."'";
         $res=$conn -> query($sql);
         $rows = array();
         $nbCalSport=0;
@@ -61,7 +60,7 @@
     function Sport_Calorie_week($conn){
         // Gets sport de la semaine
 
-        $date_ajd=date('Y-m-d');
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
         $date_db_semaine=date('Y-m-d', strtotime("this week"));
 
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
@@ -79,7 +78,7 @@
     function Sport_Calorie_month($conn){
         // Gets sport du mois
 
-        $date_ajd=date('Y-m-d');
+        $date_ajd=date('Y-m-d H:i:s', strtotime("today"));
         $date_db_month=date('Y-m-d', strtotime("first day of this month"));
 
         $sql="SELECT sport.nb_calories*pratique.temps/60 FROM pratique 
