@@ -11,19 +11,19 @@
 
 <p class ="info">Cliquer sur un sport pour le supprimer ou le modifier !</p>
 
-<div id="aliments-form">
+<div id="sports-form">
     <div class="box">
         <form>
             <ul>
-                <li class="aliments-form-item">
+                <li class="sports-form-item">
                     <label>Nom :</label>
                     <input type="text" id="nom" name="nom">
                 </li>
-                <li class="aliments-form-item">
+                <li class="sports-form-item">
                     <label>Calories :</label>
                     <input type="number" id="calories" name="calories">
                 </li>
-                <li id="aliments-form-buttons">
+                <li id="sports-form-buttons">
                     <button class="button" id="add">Ajouter</button>
                     <button class="button" id="edit">Modifier</button>
                     <button class="button" id="delete">Supprimer</button>
@@ -55,7 +55,7 @@
                 // scrollX: 200,
                 scrollY: 350,
                 language: {
-                    lengthMenu: "Afficher _MENU_ aliments",
+                    lengthMenu: "Afficher _MENU_ sports",
                     search: "Rechercher :",
                     info: "Page _PAGE_ sur _PAGES_",
                     paginate: {
