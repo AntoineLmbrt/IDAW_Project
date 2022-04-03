@@ -37,8 +37,20 @@
         break;
 
         case 'POST':
-            ajoutPratique($conn);
-            break;
+            switch($_POST['function']){
+                case 'ADD' :
+                    ajoutPratique($conn);
+                break;
+                
+                case 'EDIT' :
+                    modifierPratique($conn);
+                break;
+            }
+        break;
+
+        case 'DELETE':
+            supprPratique($conn);
+        break;
     }
     
 
@@ -116,7 +128,7 @@
     function pratiqueJournal($conn){
         $sql="SELECT pratique.date, sport.nom, pratique.temps, sport.nb_calories*pratique.temps/60 FROM pratique
         LEFT JOIN sport ON sport.id_sport=pratique.id_sport
-        WHERE pratique.login = '".$_GET['login']."'";
+        WHERE pratique.login = '".$_SESSION['login']."'";
 
         $res=$conn -> query($sql);
         $rows = array();
@@ -163,5 +175,7 @@
         }
         echo json_encode($response,0);
     }
+
+    function supprPratique(){}
 
 ?>

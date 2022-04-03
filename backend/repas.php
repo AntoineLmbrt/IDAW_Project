@@ -36,8 +36,16 @@
             }
         break;
         case 'POST':
-            ajoutRepas($conn);
+            switch($_POST['function']){
+                case 'ADD':
+                    ajoutRepas($conn);
+                break;
+
         break;
+        case 'DELETE':
+            supprRepas($conn);
+        break;
+        }
     }
     
 
@@ -156,6 +164,21 @@
         }
         else{
             $response['resultat']='failed';
+        }
+        echo json_encode($response,0);
+    }
+
+    function supprRepas($conn){
+        $sql='SELECT id_aliment FROM aliment WHERE nom ="'.mb_convert_encoding($_GET['nom'], 'CP1252', 'UTF-8').'"';
+        $res=$conn->query($sql);
+        $res=$res->fetch_assoc();
+
+        $sql='DELETE FROM repas WHERE id_aliment="'.$res['id_aliment'].'" AND login="'.$_GET['login'].'" AND date="'.$_GET['date'];
+        if($conn -> query($sql)==TRUE){
+            $response = "success";
+        }
+        else{
+            $response = "failed";
         }
         echo json_encode($response,0);
     }
