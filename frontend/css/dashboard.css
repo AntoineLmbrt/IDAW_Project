@@ -33,7 +33,6 @@
 
 #journalRepas table,
 #journalSport table {
-    height: auto;
     margin: 10px auto;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
@@ -53,6 +52,8 @@
 #journalRepas table tbody th,
 #journalSport table tbody th {
     height: 50px;
+    max-height: 50px;
+    overflow: hidden;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
