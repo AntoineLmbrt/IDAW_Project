@@ -82,62 +82,52 @@ let progress = start;
 })();
 
 // AJOUTER UNE SEANCE DE SPORT
-$("#ajoutPratique").on("click", function () {
-  event.preventDefault();
-  if (
-    $("#inputSeanceDate").val() &&
-    $("#inputSportName").val() &&
-    $("#inputSeanceDuration").val()
-  ) {
-    $.ajax({
-      url: "../backend/pratique.php",
-      method: "POST",
-      dataType: "json",
-      data: {
-        nom: $("#inputSportName").val(),
-        date: $("#inputSeanceDate").val(),
-        temps: $("#inputSeanceDuration").val(),
-      },
-    })
-      .done(function (data) {
-        console.log(data);
-      })
-      .fail(function () {
-        console.log("FAILED");
-      });
-  } else {
-    console.log("Manque des champs");
-  }
-});
+$('#ajoutPratique').on('click', function(){
+    event.preventDefault();
+    if($('#inputSeanceDate').val() && $('#inputSportName').val() && $('#inputSeanceDuration').val()){
+        $.ajax({
+            url:'../backend/pratique.php',
+            method: 'POST',
+            dataType:'json',
+            data:{
+                nom:$('#inputSportName').val(),
+                date:$('#inputSeanceDate').val(),
+                temps:$('#inputSeanceDuration').val(),
+            }
+        }).done(function(data){
+            console.log(data);
+        }).fail(function(){
+            console.log('FAILED');
+        })
+        location.reload();
+    } else {
+            console.log('Manque des champs')
+    }
+})
 
 // AJOUTER UN REPAS
-$("#ajoutRepas").on("click", function () {
-  event.preventDefault();
-  if (
-    $("#inputRepasDate").val() &&
-    $("#inputRepasName").val() &&
-    $("#inputRepasQuantity").val()
-  ) {
-    $.ajax({
-      url: "../backend/repas.php",
-      method: "POST",
-      dataType: "json",
-      data: {
-        nom: $("#inputRepasName").val(),
-        quantite: $("#inputRepasQuantity").val(),
-        date: $("#inputRepasDate").val(),
-      },
-    })
-      .done(function (data) {
-        console.log(data);
-      })
-      .fail(function () {
-        console.log("FAILED");
-      });
-  } else {
-    console.log("Manque des champs");
-  }
-});
+$('#ajoutRepas').on('click', function(){
+    event.preventDefault();
+    if($('#inputRepasDate').val() && $('#inputRepasName').val() && $('#inputRepasQuantity').val()){
+        $.ajax({
+            url:'../backend/repas.php',
+            method: 'POST',
+            dataType:'json',
+            data:{
+                nom:$('#inputRepasName').val(),
+                quantite:$('#inputRepasQuantity').val(),
+                date:$('#inputRepasDate').val(),
+            }
+        }).done(function(data){
+            console.log(data);
+        }).fail(function(){
+            console.log('FAILED');
+        })
+        location.reload();
+    }else{
+            console.log('Manque des champs')
+    }
+})
 
 function chargementDonnees() {
   // Dashboard
@@ -223,40 +213,35 @@ function chargementSport() {
     });
 }
 
-function journalRepasDashboard() {
-  $.ajax({
-    url: "../backend/repas.php?time=3days",
-    dataType: "json",
-  })
-    .done(function (data) {
-      console.log("REQ AJAX SUCCED");
-      console.log(data);
-      for (let i in data) {
-        $("#repas tbody").append(
-          `<tr><th class="table-date">${data[i]["date"]}</th><th class="table-item-name">${data[i]["nom"]}</th><th class="table-duration">${data[i]["quantite"]}</th><th class="table-calories">${data[i]["aliment.nb_calories*repas.quantite"]}</th></tr>`
-        );
-      }
+function journalRepasDashboard(){
+    $.ajax({
+        url:'../backend/repas.php?time=3days',
+        dataType:'json',
+    }).done(function(data){
+        console.log('REQ AJAX SUCCED');
+        console.log(data);
+        for(let i in data){
+            $('#journalRepasDashboard table tbody' ).append(`<tr><td class="table-date">${data[i]['date']}</td><td class="table-item-name">${data[i]['nom']}</td><td class="table-quantity">${data[i]['quantite']}</td><td class="table-calories">${data[i]['aliment.nb_calories*repas.quantite']}</td></tr>`);
+        }
+        
+    }).fail(function(){
+        console.log('REQ AJAX FAILED')
+
     })
-    .fail(function () {
-      console.log("REQ AJAX FAILED");
-    });
 }
 
-function journalSportDashboard() {
-  $.ajax({
-    url: "../backend/pratique.php?time=3days",
-    dataType: "json",
-  })
-    .done(function (data) {
-      console.log("REQ AJAX SUCCED");
-      console.log(data);
-      for (let i in data) {
-        $("#pratique tbody").append(
-          `<tr><th class="table-date">${data[i]["date"]}</th><th class="table-item-name">${data[i]["nom"]}</th><th class="table-duration">${data[i]["temps"]} min</th><th class="table-calories">${data[i]["sport.nb_calories*pratique.temps/60"]}</th></tr>`
-        );
-      }
+
+function journalSportDashboard(){
+    $.ajax({
+        url:'../backend/pratique.php?time=3days',
+        dataType:'json',
+    }).done(function(data){
+        console.log('REQ AJAX SUCCED');
+        console.log(data);
+        for(let i in data){
+            $('#journalSportDashboard table tbody' ).append(`<tr><td class="table-date">${data[i]['date']}</td><td class="table-item-name">${data[i]['nom']}</td><td class="table-duration">${data[i]['temps']} min</td><td class="table-calories">${data[i]['sport.nb_calories*pratique.temps/60']}</td></tr>`);
+        }
+    }).fail(function(){
+        console.log('REQ AJAX FAILED')
     })
-    .fail(function () {
-      console.log("REQ AJAX FAILED");
-    });
 }

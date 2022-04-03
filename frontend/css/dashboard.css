@@ -31,79 +31,81 @@
     margin: 0 0 20px 0;
 }
 
-#journalRepas table,
-#journalSport table {
+#journalRepasDashboard table,
+#journalSportDashboard table {
     margin: 10px auto;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
 
-#journalRepas table thead,
-#journalSport table thead {
+#journalRepasDashboard table thead,
+#journalSportDashboard table thead {
     background-color: var(--light-grey-color);
 }
 
-#journalRepas table tbody tr,
-#journalSport table tbody tr {
+#journalRepasDashboard table tbody tr,
+#journalSportDashboard table tbody tr {
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
 
-#journalRepas table tbody th,
-#journalSport table tbody th {
+#journalRepasDashboard table tbody td,
+#journalSportDashboard table tbody td {
     height: 50px;
-    max-height: 50px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 0;
     border: 1px solid var(--grey-color);
     border-collapse: collapse;
 }
 
-#journalRepas table .table-date,
-#journalSport table .table-date {
-    width: 150px;
+#journalRepasDashboard table .table-date,
+#journalSportDashboard table .table-date {
+    width: 200px;
 }
 
-#journalRepas table .table-item-name,
-#journalSport table .table-item-name {
+#journalRepasDashboard table .table-item-name,
+#journalSportDashboard table .table-item-name {
     width: 300px;
 }
 
-#journalRepas table .table-quantity,
-#journalSport table .table-duration {
+#journalRepasDashboard table .table-quantity,
+#journalSportDashboard table .table-duration {
     width: 150px;
 }
 
-#journalRepas table .table-calories,
-#journalSport table .table-calories {
+#journalRepasDashboard table .table-calories,
+#journalSportDashboard table .table-calories {
     width: 100px;
 }
 
-#journalRepas table tbody th #inputRepasDate,
-#journalSport table tbody th #inputSeanceDate {
+#journalRepasDashboard table tbody td #inputRepasDate,
+#journalSportDashboard table tbody td #inputSeanceDate {
     margin: 0 5px;
-    width: 130px;
+    width: 180px;
 }
 
-#journalRepas table tbody th #inputRepasName,
-#journalSport table tbody th #inputSportName {
+#journalRepasDashboard table tbody td #inputRepasName,
+#journalSportDashboard table tbody td #inputSportName {
     margin: 0 5px;
     width: 280px;
 }
 
-#journalRepas table tbody th #inputRepasQuantity,
-#journalSport table tbody th #inputSeanceDuration {
+#journalRepasDashboard table tbody td #inputRepasQuantity,
+#journalSportDashboard table tbody td #inputSeanceDuration {
     margin: 0 5px;
     width: 130px;
     text-align: center;
 }
 
-#journalRepas form,
-#journalSport form {
+#journalRepasDashboard form,
+#journalSportDashboard form {
     text-align: center;
 }
 
-#journalRepas form .btn,
-#journalSport form .btn {
+#journalRepasDashboard form .btn,
+#journalSportDashboard form .btn {
     width: 50%;
     padding: 3px;
     border-radius: 6px;
@@ -113,8 +115,8 @@
     cursor: pointer;
 }
 
-#journalRepas form .btn:hover,
-#journalSport form .btn:hover {
+#journalRepasDashboard form .btn:hover,
+#journalSportDashboard form .btn:hover {
     background-color: var(--main-color);
 }
 
