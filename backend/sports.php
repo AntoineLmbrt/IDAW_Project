@@ -14,11 +14,11 @@
             if(isset($_POST['function'])){
                 switch($_POST['function']){
                     case 'EDIT':
-                        modifierSports($conn);
+                        modifierSport($conn);
                     break;
 
                     case 'ADD':
-                        ajouterSports($conn);
+                        ajouterSport($conn);
                     break;
                 }
             }
@@ -30,29 +30,16 @@
 
     }
 
-    //Obtenir la liste des aliments et leurs nutriments !
+    //Obtenir la liste des sprts !
     function listeSports($conn){
         $sql = "SELECT * FROM sport";
         $result = $conn->query($sql);
-
-        // $nb_nutriment=$conn->query("SELECT COUNT(*) FROM nutriment");
-        // $nb_nutriment=$nb_nutriment->fetch_assoc();
-        // $nb_nutriment=$nb_nutriment['COUNT(*)'];
 
         $response=array();
 
         while($row = $result->fetch_assoc()){
             $rows[] = $row;
         }
-            //On ajoute les nutriments 
-                // On récupère le ratio du nutriment et le nom
-                // $res1=$conn->query('SELECT contient.ratio, nutriment.nom FROM contient LEFT JOIN nutriment ON contient.id_nutriment=nutriment.id_nutriment WHERE id_aliment='.$row['id_aliment']);
-                // while($res=$res1->fetch_assoc()){
-                //     $ratio=$res['ratio'];
-                //     $nom_nutriment=$res['nom'];
-                //     // On l'ajoute à la colonne
-                //     $row2[$nom_nutriment]=$ratio;
-                // }
         $rows = mb_convert_encoding($rows,'UTF-8', 'CP1252');
         $response["draw"]= 1;
 
@@ -65,9 +52,9 @@
         echo json_encode($response);
     }
 
-    function modifierAliment($conn){
+    function modifierSport($conn){
         $sql='';
-        foreach($_POST['aliment'] as $key => $value){
+        foreach($_POST['sport'] as $key => $value){
             if($key == 'nb_calories'){
                 $sql=$sql.$key."=".$value;
             }elseif($key == 'id'){
@@ -75,7 +62,7 @@
                 $sql=$sql.$key."='".$value."',";
             }
         }
-        $sql="UPDATE aliment SET ".$sql." WHERE id_aliment = ".$_POST['aliment']['id'];
+        $sql="UPDATE sport SET ".$sql." WHERE id_sport = ".$_POST['sport']['id'];
         $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
         if($conn->query($sql)==TRUE){;
             $response='success sql';
@@ -86,9 +73,9 @@
         echo json_encode($response);
     }
 
-    function ajouterAliment($conn){
+    function ajouterSport($conn){
         $sql='';
-        foreach($_POST['aliment'] as $key => $value){
+        foreach($_POST['sport'] as $key => $value){
             if($key == 'nb_calories'){
                 $sql=$sql.",".$value;
             }else{
@@ -96,20 +83,20 @@
             }
         }
         
-        $sql="INSERT INTO aliment VALUES(NULL".$sql.")";
+        $sql="INSERT INTO sport VALUES(NULL".$sql.")";
         $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
         if($conn->query($sql) === TRUE){
-            $id_aliment=$conn->insert_id;
+            $id_sport=$conn->insert_id;
             $response['resultat']="success";
         };
         
 
-        $response['id']=$id_aliment;
+        $response['id']=$id_sport;
         echo json_encode($response);
     }
 
-    function supprAliment($conn){
-        $sql="DELETE FROM aliment WHERE id_aliment=".$_GET['id_aliment'];
+    function supprSport($conn){
+        $sql="DELETE FROM sport WHERE id_sport=".$_GET['id_sport'];
         if($conn->query($sql)==TRUE){
             $response['resultat']='success';
         }else{
