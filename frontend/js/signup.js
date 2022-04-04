@@ -39,7 +39,7 @@ function onFormSubmit() {
                 'user':{
                     'login':$("#inputEmail").val(),
                     'password':$("#inputPassword").val(),
-                    'nom': $("#inputNom").val(),
+                    'nom':$("#inputNom").val(),
                     'prenom':$("#inputPrenom").val(),
                     'date':$("#inputDate").val(),
                     'sexe':$("#inputSexe").val(),
@@ -59,15 +59,7 @@ function onFormSubmit() {
             console.log('REQUETE AJAX FAILED');
         })
     } else {
-        $("#signup-form ul").prepend('<div class="textError">Veuillez renseignez les champs.</div>');
-        console.log('Loupé');
-        champsObligatoires.forEach(element => {
-            console.log($(element).val());
-            if ($(element).val() == "" || $(element).val() === undefined)
-                $(element).css("border", "2px solid #E83333");
-            else
-                $(element).css("border", "1px solid #18A585");    
-        });
+        $("#signup-form ul").prepend('<div class="textError">Veuillez renseignez les champs.</div>'); 
         console.log('Loupé');
     }
 }
