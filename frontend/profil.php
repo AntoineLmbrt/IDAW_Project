@@ -2,28 +2,31 @@
 <div id="profile">
     <div class="box">
         <table>
-            <tr>
+            <tr class="editable">
                 <td class="profile-key">Nom :</td>
                 <td class="profile-value" id="nom"></td>
             </tr>
-            <tr>
+            <tr class="editable">
                 <td class="profile-key">Prénom :</td>
                 <td class="profile-value" id="prenom"></td>
             </tr>
-            <tr>
+            <tr class="notEditable">
                 <td class="profile-key">Email :</td>
                 <td class="profile-value" id="login"></td>
             </tr>
-            <tr>
+            <tr class="editable">
                 <td class="profile-key">Date de naissance :</td>
                 <td class="profile-value" id="date_naissance"></td>
             </tr>
-            <tr>
-                <td class="profile-key">Genre :</td>
-                <td class="profile-value" id="libelle"></td>
+            <tr class="editable">
+                <td class="profile-key">Sexe :</td>
+                <td class="profile-value" id="sexe_libelle"></td>
             </tr>
         </table>
     </div>
+</div>
+<div id="profile-buttons">
+    <button onclick="profileEdit()">Modification</button>
 </div>
 
 <script src="js/profil.js"></script>
