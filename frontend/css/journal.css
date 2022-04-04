@@ -1,0 +1,82 @@
+#journal #journal-buttons {
+    width: 30%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+#journal #journal-buttons .box {
+    padding: 10px;
+    background-color: var(--light-grey-color);
+}
+    
+
+#journal #journal-buttons button {
+    font-size: 16px;
+    margin: 0px 20px;
+    padding: 3px 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    cursor: pointer;
+}
+#journal #journal-buttons button:hover {
+    background-color: var(--main-color);
+}
+
+#journal table {
+    text-align: center;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journal .scroll-box {
+    display: inline-block;
+    height: 450px;
+    overflow-y: scroll;
+    margin: 20px;
+}
+
+#journal table thead th {
+    position: sticky;
+    top: 0;
+    height: 30px;
+    background-color: var(--light-grey-color);
+}
+
+#journal table tfoot td {
+    position: sticky;
+    bottom: 0;
+    height: 30px;
+    background-color: var(--light-grey-color);
+}
+
+#journal table tbody {
+    overflow-y: scroll;
+}
+
+#journal table tbody td {
+    height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 0;
+    border: 1px solid var(--grey-color);
+    border-collapse: collapse;
+}
+
+#journal table .column1 {
+    width: 300px;
+}
+
+#journal table .column2 {
+    width: 500px;
+}
+
+#journal table .column3 {
+    width: 200px;
+}
+
+#journal table .column4 {
+    width: 200px;
+}

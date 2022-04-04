@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/forms.css">
         <link rel="stylesheet" href="css/dashboard.css">
         <link rel="stylesheet" href="css/profile.css">
+        <link rel="stylesheet" href="css/journal.css">
         <link rel="stylesheet" href="css/tables.css">
 
         <!-- JS files -->

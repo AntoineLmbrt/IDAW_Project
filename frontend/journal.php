@@ -5,19 +5,30 @@
     </div>
 </div>
 <div id="journal">
-    <button onclick="displayRepas()">Repas</button>
-    <button onclick="displaySport()">Sport</button>
-    <table id="journalRepas">
-        <thead>
-            <tr>
-                <th id="column1">Date</th>
-                <th id="column2">Aliment</th>
-                <th id="column3">Quantité</th>
-                <th id="column4">Calories</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <div id="journal-buttons">
+        <div class="box">
+            <button onclick="displayRepas()">Repas</button>
+            <button onclick="displaySport()">Sports</button>
+        </div>
+    </div>
+    <div class="scroll-box">
+        <table>
+            <thead>
+                <tr>
+                    <th class="column1">Date</th>
+                    <th class="column2">Aliment</th>
+                    <th class="column3">Quantité</th>
+                    <th class="column4">Calories</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="info">Pour ajouter un élément, rendez-vous sur le dashboard !</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 <script src="js/journal.js">
