@@ -6,7 +6,7 @@
     // NAVIGATION
     require_once('navigation.php');
 
-    $currentPageId = 'home';
+    $currentPageId = 'dashboard';
     if(isset($_GET['page'])) {
         $currentPageId = $_GET['page'];
     }
