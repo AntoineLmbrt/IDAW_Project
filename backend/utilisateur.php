@@ -178,7 +178,7 @@
                 $timestamp = strtotime($value); 
                 $newDate = date("Y-m-d", $timestamp );
                 $sql=$sql.$key."='".$newDate."', ";
-                // $sql=$sql."age =".age($value).", ";
+                $sql=$sql."age =".age($value).", ";
             }else{
                 $sql=$sql.$key."='".$value."', ";
             }
