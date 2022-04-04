@@ -26,6 +26,16 @@
     font-size: 20px;
 }
 
+#graph-info {
+    bottom: 0px;
+}
+
+#graph-info .info {
+    padding: 3px;
+    font-size: 10px;
+    color: var(--secondary-color);
+}
+
 .journal {
     height: 280px;
     margin: 0 0 20px 0;
