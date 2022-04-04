@@ -37,7 +37,7 @@ POST :
             user:{    
                 nom :
                 prenom :
-                date :
-                id_sexe : [mettre le libelle ( le back le transforme en id)]
+                date_naissance :
+                id_sexe : [mettre le libelle (le back le transforme en id)]
             }
         }

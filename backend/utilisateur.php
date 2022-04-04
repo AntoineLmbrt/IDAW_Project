@@ -164,6 +164,7 @@
     }
 
     function modifierUser($conn){
+        session_start();
         $sql="SELECT id_sexe FROM sexe WHERE libelle = '".$_POST['user']['id_sexe']."'";
         $res = $conn->query($sql);
         $res=$res->fetch_assoc();
@@ -173,16 +174,16 @@
         foreach($_POST['user'] as $key => $value){
             if($key == 'id_sexe' ){
                 $sql=$sql.$key."=".$value;
-            }elseif($key == 'date'){
+            }elseif($key == 'date_naissance'){
                 $timestamp = strtotime($value); 
                 $newDate = date("Y-m-d", $timestamp );
                 $sql=$sql.$key."='".$newDate."', ";
-                $sql=$sql."age =".age($value).", ";
+                // $sql=$sql."age =".age($value).", ";
             }else{
                 $sql=$sql.$key."='".$value."', ";
             }
         }
-        $sql="UPDATE utilisateur SET ".$sql." WHERE login = ".$_SESSION['login'];
+        $sql="UPDATE utilisateur SET ".$sql." WHERE login = '".$_SESSION['login']."'";
         $sql = mb_convert_encoding($sql, 'CP1252','UTF-8');
         if($conn->query($sql)==TRUE){;
             $response='success sql';
