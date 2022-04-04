@@ -1,7 +1,7 @@
 <?php
     function renderMenuToHTML($currentPageId) {
         $myMenu = array(
-            'home' => array('name' => 'Home', 'icon' => '<i class="fa-solid fa-chart-line"></i>'),
+            'dashboard' => array('name' => 'Dashboard', 'icon' => '<i class="fa-solid fa-chart-line"></i>'),
             'profil' => array('name' => 'Profil', 'icon' => '<i class="fa-solid fa-user"></i>'),
             'journal' => array('name' => 'Journal', 'icon' => '<i class="fa-solid fa-newspaper"></i>'),
             'aliments' => array('name' => 'Aliments', 'icon' => '<i class="fa-solid fa-carrot"></i>'),
